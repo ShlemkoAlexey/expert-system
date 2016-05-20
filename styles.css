@@ -29,12 +29,69 @@ body{
   padding: 20px;
   border-top: 4px solid #b88b58;
 }
+.city-field{
+  position: relative;
+}
+.city-options-list{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: left;
+  position: absolute;
+  z-index: 10;
+}
+.city-options-list li{
+    padding: 5px 20px;
+    font-size: 150%;
+    background: #ffffff;
+}
+
+.city-options-list li:nth-child(n+6){
+  display: none;
+}
+.city-options-list li:hover{
+  cursor: pointer;
+  background: lightyellow;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .find-button{
-  background: #b88b58;
+  background: #DCB386;
   color: white;
   font-weight: bold;
+
 }
+.find-button:hover{
+  background: #b88b58;
+  color: white;
+
+}
+.find-button:active{
+  background: #784D1D;
+  outline: none;
+  color: white;
+}
+.find-button:focus{
+  outline: none;
+  color: white;
+}
+
 
 .results-block{
   margin-top: 20px;
