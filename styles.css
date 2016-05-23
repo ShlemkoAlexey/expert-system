@@ -41,9 +41,9 @@ body{
   z-index: 10;
 }
 .city-options-list li{
-    padding: 5px 20px;
-    font-size: 150%;
-    background: #ffffff;
+  padding: 5px 20px;
+  font-size: 150%;
+  background: #ffffff;
 }
 
 .city-options-list li:nth-child(n+6){
@@ -80,7 +80,6 @@ body{
 .filter-button:hover{
   background: #b88b58;
   color: white;
-
 }
 .filter-button:active{
   background: #784D1D;
@@ -90,6 +89,47 @@ body{
 .filter-button:focus{
   outline: none;
   color: white;
+}
+
+
+
+.paginator{
+  padding-top: 20px;
+  text-align: center;
+
+}
+.paginator ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+}
+.paginator ul li{
+  background: #DCB386;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #b88b58;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 150%;
+  padding: 5px 12px;
+  margin-left: -1px;
+}
+.paginator ul li:hover{
+  background: #b88b58;
+}
+
+.paginator ul li + .current-page{
+  background: #784D1D;
+}
+
+.paginator ul li:first-child{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.paginator ul li:last-child{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 
@@ -117,4 +157,14 @@ body{
   color: #404040;
   font-size: 150%;
   font-weight: bold;
+}
+
+.footer-block{
+  margin-top: 20px;
+  background: #ffffff;
+  width: 100%;
+  padding: 20px;
+  border-top: 4px solid #b88b58;
+  font-size: 300%;
+  font-family: 'Bangers', cursive;
 }

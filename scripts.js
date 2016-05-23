@@ -3,6 +3,11 @@ var inputField = $('.city-field');
 var selectField = $(".city-options-list");
 var selectFieldItem = $(".city-options-list li");
 
+var Statements = {
+  "currentPage": 1,
+  "totalPages": 5
+}
+
 
 inputField.keyup(function (event) {
   if (inputField.val().length > 0) {
@@ -19,25 +24,27 @@ $(document).on("click", ".city-options-list li", function(){
 
 $(document).ready(function(){
   loadCityList();
-  loadAdverts("Amsterdam");
+  loadAdverts("http://178.62.229.113/results/1");
+  createPaginator(Statements.currentPage, Statements.totalPages);
 });
 
 $(".filter-button").click(function(){
-  loadAdverts(inputField.val());
+  loadAdverts("http://178.62.229.113/filter/include/city/"+inputField.val());
 });
-function loadAdverts(city){
-  $.getJSON("http://178.62.229.113/filter/include/city/"+city)
-    .done(function(data){
-      console.log("adverts data loaded");
-      $(".results-block").empty();
-      for (var i = 0; i < data.length; i++) {
-        $(".results-block").append(createAdvertFrame(data[i].url, 'http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg', data[i].city, data[i].actual_price, data[i].predicted_price, data[i].price_diff, data[i].has_garden, data[i].has_garage));
-      }
-    })
-    .fail(function(){
-      console.log("advert data load failed");
-    });
+function loadAdverts(requestAdress){
+  $.getJSON(requestAdress)
+  .done(function(data){
+    console.log("adverts data loaded");
+    $(".results-block").empty();
+    for (var i = 0; i < data.length; i++) {
+      $(".results-block").append(createAdvertFrame(data[i].url, data[i].preview_url, data[i].city, data[i].actual_price, data[i].predicted_price, data[i].price_diff, data[i].has_garden, data[i].has_garage));
+    }
+  })
+  .fail(function(){
+    console.log("advert data load failed");
+  });
 }
+
 
 
 
@@ -96,4 +103,42 @@ function loadCityList(){
   .fail(function(){
     console.log("city list load failed");
   });
+}
+
+function createPaginator(currentPage, totalPages){
+  $(".paginator ul").empty();
+  $(".paginator ul").append("<li class='first-page'>&laquo</li>");
+  if ((currentPage-1) > 0) {
+    $(".paginator ul").append("<li class='prev-page'>" + (currentPage-1)+"</li>");
+  }
+  $(".paginator ul").append("<li class='current-page'>" + currentPage + "</li>");
+  if ((currentPage+1) <= totalPages) {
+    $(".paginator ul").append("<li class='next-page'>" + (currentPage+1) +"</li>");
+  }
+  $(".paginator ul").append("<li  class='last-page'>&raquo</li>");
+  bindEventsToPaginator();
+}
+
+function bindEventsToPaginator(){
+  $(".first-page").on("click", function(){
+    Statements.currentPage = 1;
+    console.log(Statements.currentPage);
+    createPaginator(Statements.currentPage, Statements.totalPages);
+  });
+  $(".last-page").on("click", function(){
+    Statements.currentPage = Statements.totalPages;
+    console.log(Statements.currentPage);
+    createPaginator(Statements.currentPage, Statements.totalPages);
+  });
+  $(".prev-page").on("click", function(){
+    Statements.currentPage--;
+    console.log(Statements.currentPage);
+    createPaginator(Statements.currentPage, Statements.totalPages);
+  });
+  $(".next-page").on("click", function(){
+    Statements.currentPage++;
+    console.log(Statements.currentPage);
+    createPaginator(Statements.currentPage, Statements.totalPages);
+  });
+  
 }
