@@ -71,23 +71,23 @@ body{
 
 
 
-.find-button{
+.filter-button{
   background: #DCB386;
   color: white;
   font-weight: bold;
 
 }
-.find-button:hover{
+.filter-button:hover{
   background: #b88b58;
   color: white;
 
 }
-.find-button:active{
+.filter-button:active{
   background: #784D1D;
   outline: none;
   color: white;
 }
-.find-button:focus{
+.filter-button:focus{
   outline: none;
   color: white;
 }
