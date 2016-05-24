@@ -5,7 +5,8 @@ var selectFieldItem = $(".city-options-list li");
 
 var Statements = {
   "currentPage": 1,
-  "totalPages": 5
+  "totalPages": 5,
+  "requestAdress": ""
 }
 
 
@@ -25,20 +26,26 @@ $(document).on("click", ".city-options-list li", function(){
 $(document).ready(function(){
   loadCityList();
   loadAdverts("http://178.62.229.113/results/1");
+  Statements.requestAdress = 'http://178.62.229.113/results/';
   createPaginator(Statements.currentPage, Statements.totalPages);
 });
 
 $(".filter-button").click(function(){
   loadAdverts("http://178.62.229.113/filter/include/city/"+inputField.val());
+  Statements.currentPage = 1;
+  Statements.requestAdress = "http://178.62.229.113/filter/include/city/"+inputField.val()+"/";
+
 });
 function loadAdverts(requestAdress){
   $.getJSON(requestAdress)
   .done(function(data){
     console.log("adverts data loaded");
     $(".results-block").empty();
-    for (var i = 0; i < data.length; i++) {
-      $(".results-block").append(createAdvertFrame(data[i].url, data[i].preview_url, data[i].city, data[i].actual_price, data[i].predicted_price, data[i].price_diff, data[i].has_garden, data[i].has_garage));
+    for (var i = 0; i < data.results.length; i++) {
+      $(".results-block").append(createAdvertFrame(data.results[i].url, data.results[i].preview_url, data.results[i].city, data.results[i].actual_price, data.results[i].predicted_price, data.results[i].price_diff, data.results[i].has_garden, data.results[i].has_garage));
     }
+    Statements.totalPages = data.pages_count;
+    createPaginator(Statements.currentPage, Statements.totalPages);
   })
   .fail(function(){
     console.log("advert data load failed");
@@ -124,21 +131,29 @@ function bindEventsToPaginator(){
     Statements.currentPage = 1;
     console.log(Statements.currentPage);
     createPaginator(Statements.currentPage, Statements.totalPages);
+    loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".last-page").on("click", function(){
     Statements.currentPage = Statements.totalPages;
     console.log(Statements.currentPage);
     createPaginator(Statements.currentPage, Statements.totalPages);
+    loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".prev-page").on("click", function(){
     Statements.currentPage--;
     console.log(Statements.currentPage);
     createPaginator(Statements.currentPage, Statements.totalPages);
+    loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".next-page").on("click", function(){
     Statements.currentPage++;
     console.log(Statements.currentPage);
     createPaginator(Statements.currentPage, Statements.totalPages);
+    loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
-  
+  $(".paginator ul li").on("click", function(){
+    $(document).scrollTop(0);
+  })
+
+
 }
