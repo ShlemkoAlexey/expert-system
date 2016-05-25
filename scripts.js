@@ -25,9 +25,9 @@ $(document).on("click", ".city-options-list li", function(){
 
 $(document).ready(function(){
   loadCityList();
-  loadAdverts("http://178.62.229.113/results/1");
-  Statements.requestAdress = 'http://178.62.229.113/results/';
-  createPaginator(Statements.currentPage, Statements.totalPages);
+  //loadAdverts("http://178.62.229.113/results/1");
+  //Statements.requestAdress = 'http://178.62.229.113/results/';
+  //createPaginator(Statements.currentPage, Statements.totalPages);
 });
 
 $(".filter-button").click(function(){
