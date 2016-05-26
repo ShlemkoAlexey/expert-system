@@ -144,24 +144,35 @@ body{
 .result{
   display: block;
   border-top: 1px solid #e6e6e6;
-
   padding-top: 20px;
   color: black;
-  transition: .5s;
   padding-left: 2%;
+  margin-bottom: 20px;
 }
-.result:hover{
-  background: lightyellow;
-  transition: .5s;
-}
+
 .result:hover,
 .result:active,
 .result:focus{
   color: black;
 }
 
+.result-image{
+  width: 100%;
+  cursor: pointer;
+  transition: .3s;
+}
+.result-image:hover{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: .3s;
+}
 .result-city-name{
   font-size: 300%;
+  cursor: pointer;
+  transition: .3s;
+}
+.result-city-name:hover{
+  color: lightblue;
+  transition: .3s;
 }
 .result-data p,
 .result-options p{
@@ -174,10 +185,22 @@ body{
   font-size: 125%;
   margin-top: 30px;
 }
-.result-advert-data{
+
+
+.result-link{
   font-size: 125%;
   font-weight: bold;
   text-decoration: underline;
+}
+.result-link,
+.result-link:active,
+.result-link:focus{
+  color: black;
+  transition: .3s;
+}
+.result-link:hover{
+  color: lightblue;
+  transition: .3s;
 }
 .result-prices p{
   font-family: 'Roboto Slab', serif;
@@ -210,4 +233,28 @@ body{
   border-top: 4px solid #b88b58;
   font-size: 300%;
   font-family: 'Bangers', cursive;
+}
+
+.mdi-arrow-down-bold{
+  color: green;
+  font-size: 175% !important;
+}
+.mdi-arrow-up-bold{
+  color: red;
+  font-size: 175% !important;
+}
+
+.mdi-magnify{
+  font-size: 150% !important;
+  margin-right: 5px;
+  font-weight: bold !important;
+  position: relative;
+  top: 3px;
+}
+.mdi-check,
+.mdi-close{
+  font-size: 175% !important;
+  position: relative;
+  top: 3px;
+  margin-left: 5px;
 }

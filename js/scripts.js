@@ -28,6 +28,7 @@ $(document).ready(function(){
   //loadAdverts("http://178.62.229.113/results/1");
   //Statements.requestAdress = 'http://178.62.229.113/results/';
   //createPaginator(Statements.currentPage, Statements.totalPages);
+  $('.result-prices p').tooltip();
 });
 
 $(".filter-button").click(function(){

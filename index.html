@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
   <div class="header-block">
@@ -24,7 +26,7 @@
           </ul>
         </div>
         <div class="col-xs-3">
-          <button class="btn btn-block filter-button">Filter</button>
+          <button class="btn btn-block filter-button"><i class="mdi mdi-magnify"></i>Filter</button>
         </div>
       </div>
 
@@ -35,13 +37,13 @@
     </div>
     <div class="results-block">
 
-      <a href="#" class="result">
+      <div class="result">
         <div class="row">
           <div class="col-xs-2">
-            <img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" width="100%"/>
+            <img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" onclick="window.open('http://www.funda.nl/','_blank')" class="result-image"/>
           </div>
           <div class="col-xs-10">
-            <p class="result-city-name">Amsterdam</p>
+            <p class="result-city-name" onclick="window.open('http://www.funda.nl/','_blank')">Amsterdam</p>
             <div class="row">
               <div class="col-xs-8">
                 <div class="row">
@@ -58,44 +60,43 @@
                   </div>
                   <div class="col-xs-7 result-options">
                     <p>
-                      Garden: Yes
+                      Garden:<i class="mdi mdi-close"></i>
                     </p>
                     <p>
-                      Garage: No
+                      Garage: <i class="mdi mdi-check"></i>
                     </p>
                   </div>
                 </div>
                 <p class="result-description">
                   Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.
                 </p>
-                <p class="result-advert-data">
-                  Advert data: 01/01/16
-                </p>
+                <a target="_blank" href="http://www.funda.nl/" class="result-link">
+                  Go to advert...
+                </a>
               </div>
               <div class="col-xs-4 result-prices">
                  <p>
-                  actual price:<span>120000 €</span>
+                  actual:<span>120000€</span>
                 </p>
                 <p>
-                  predicted price:<span>150000 €</span>
+                  predicted:<span>150000€</span>
                 </p>
-                <p>
-                  price difference:<span>-30000 €</span>
+                <p data-toggle="tooltip" data-placement="bottom" title="Underrated">
+                  <i class="mdi mdi-arrow-down-bold"></i> <span>30000€</span>
                 </p>
               </div>
             </div>
           </div>
         </div>
-      </a>
+      </div>
 
-
-      <a href="#" class="result">
+      <div class="result">
         <div class="row">
           <div class="col-xs-2">
-            <img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" width="100%"/>
+            <img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" onclick="window.open('http://www.funda.nl/','_blank')" class="result-image"/>
           </div>
           <div class="col-xs-10">
-            <p class="result-city-name">Amsterdam</p>
+            <p class="result-city-name" onclick="window.open('http://www.funda.nl/','_blank')">Amsterdam</p>
             <div class="row">
               <div class="col-xs-8">
                 <div class="row">
@@ -112,88 +113,38 @@
                   </div>
                   <div class="col-xs-7 result-options">
                     <p>
-                      Garden: Yes
+                      Garden:<i class="mdi mdi-check"></i>
                     </p>
                     <p>
-                      Garage: No
+                      Garage: <i class="mdi mdi-close"></i>
                     </p>
                   </div>
                 </div>
                 <p class="result-description">
                   Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.
                 </p>
-                <p class="result-advert-data">
-                  Advert data: 01/01/16
-                </p>
+                <a target="_blank" href="http://www.funda.nl/" class="result-link">
+                  Go to advert...
+                </a>
               </div>
               <div class="col-xs-4 result-prices">
                  <p>
-                  actual price:<span>120000 €</span>
+                  actual:<span>150000€</span>
                 </p>
                 <p>
-                  predicted price:<span>150000 €</span>
+                  predicted:<span>120000€</span>
                 </p>
-                <p>
-                  price difference:<span>-30000 €</span>
+                <p data-toggle="tooltip" data-placement="bottom" title="Overrated">
+                  <i class="mdi mdi-arrow-up-bold"></i><span>30000€</span>
                 </p>
               </div>
             </div>
           </div>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="result">
-        <div class="row">
-          <div class="col-xs-2">
-            <img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" width="100%"/>
-          </div>
-          <div class="col-xs-10">
-            <p class="result-city-name">Amsterdam</p>
-            <div class="row">
-              <div class="col-xs-8">
-                <div class="row">
-                  <div class="col-xs-5 result-data">
-                    <p>
-                      Type: House
-                    </p>
-                    <p>
-                      Rooms: 4 (3)
-                    </p>
-                    <p>
-                      Area: 120m<sup>3</sup>
-                    </p>
-                  </div>
-                  <div class="col-xs-7 result-options">
-                    <p>
-                      Garden: Yes
-                    </p>
-                    <p>
-                      Garage: No
-                    </p>
-                  </div>
-                </div>
-                <p class="result-description">
-                  Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.
-                </p>
-                <p class="result-advert-data">
-                  Advert data: 01/01/16
-                </p>
-              </div>
-              <div class="col-xs-4 result-prices">
-                 <p>
-                  actual price:<span>120000 €</span>
-                </p>
-                <p>
-                  predicted price:<span>150000 €</span>
-                </p>
-                <p>
-                  price difference:<span>-30000 €</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
+
+
       <!--
       <div class="result">
       <div class="row">
@@ -225,5 +176,6 @@
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-<script src="scripts.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
 </body>
