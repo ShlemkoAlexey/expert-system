@@ -167,12 +167,13 @@ body{
 }
 .result-city-name{
   font-size: 300%;
-  cursor: pointer;
   transition: .3s;
+  color: black;
 }
 .result-city-name:hover{
   color: lightblue;
   transition: .3s;
+  text-decoration: none;
 }
 .result-data p,
 .result-options p{
@@ -183,7 +184,7 @@ body{
 .result-description{
   font-style: italic;
   font-size: 125%;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 
@@ -212,19 +213,7 @@ body{
   font-size: 165%;
   margin-left: 10px;
 }
-/*
-.result .row div p:nth-child(1){
-  font-size: 300%;
-}
-.result .row div p:nth-child(2){
-  font-size: 150%;
-}
-.result .row div a{
-  color: #404040;
-  font-size: 150%;
-  font-weight: bold;
-}
-*/
+
 .footer-block{
   margin-top: 20px;
   background: #ffffff;
