@@ -31,12 +31,14 @@ $(document).ready(function(){
 });
 
 $(".filter-button").click(function(){
+
   loadAdverts("http://178.62.229.113/filter/include/city/"+inputField.val());
   Statements.currentPage = 1;
   Statements.requestAdress = "http://178.62.229.113/filter/include/city/"+inputField.val()+"/";
 
 });
 function loadAdverts(requestAdress){
+  $('.global-preloader').show();
   $.getJSON(requestAdress)
   .done(function(data){
     console.log("adverts data loaded");
@@ -47,9 +49,11 @@ function loadAdverts(requestAdress){
     Statements.totalPages = data.pages_count;
     createPaginator(Statements.currentPage, Statements.totalPages);
     $('.result-prices p').tooltip();
+    $('.global-preloader').hide();
   })
   .fail(function(){
     console.log("advert data load failed");
+    $('.global-preloader').hide();
   });
 }
 
@@ -79,15 +83,15 @@ function createAdvertFrame(url, image_url, location, actual_price, predicted_pri
   price_diff = price_diff.toFixed();
 
   if (has_garden == 0){
-    has_garden = "<i class='mdi mdi-close'></i>"
+    has_garden = "<i class='mdi mdi-close' style = 'color:red;'></i>"
   }else{
-    has_garden = "<i class='mdi mdi-check'></i>"
+    has_garden = "<i class='mdi mdi-check' style = 'color:green;'></i>"
   }
 
   if (has_garage == 0){
-    has_garage = "<i class='mdi mdi-close'></i>"
+    has_garage = "<i class='mdi mdi-close' style = 'color:red;'></i>"
   }else{
-    has_garage = "<i class='mdi mdi-check'></i>"
+    has_garage = "<i class='mdi mdi-check' style = 'color:green;'></i>"
   }
 
   var price_comparison;
