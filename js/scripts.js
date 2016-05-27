@@ -40,10 +40,22 @@ $(document).ready(function(){
 $(".filter-button").click(function(){
   if ($('.filtered-cities-list li').length > 0) {
     var filterOption = $("input:radio[name ='inc-exc-radio']:checked").val(); //  include/exclude switcher
+    var typeFilterOption = "";
+
+    if ($(".house-type-select").val() == "House") {
+
+      typeFilterOption = "/type/0";
+    }else if ($(".house-type-select").val() == "Apartment") {
+
+      typeFilterOption = "/type/1";
+    }
+
+
     console.log(filterOption);
-    loadAdverts("http://178.62.229.113/filter/"+filterOption+"/"+getCityListFromUL());
+
+    loadAdverts("http://178.62.229.113/filter/"+ filterOption + "/"+getCityListFromUL()+ typeFilterOption);
     Statements.currentPage = 1;
-    Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption+"/"+getCityListFromUL() +"/page/";
+    Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption +"/"+getCityListFromUL()+ typeFilterOption +"/page/";
   }else {
     alert('Please enter cities for search');
   }
