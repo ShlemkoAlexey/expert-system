@@ -19,11 +19,18 @@ inputField.keyup(function (event) {
 });
 
 $(document).on("click", ".city-options-list li", function(){
-  inputField.val($(this).html());
+  $('.filtered-cities-list').append( "<li>"+$(this).html()+"<i class='mdi mdi-close'></i></li>" );
+  $('.filtered-cities-list li i').on('click', function(){
+    $(this).parent().fadeOut(200, function(){
+      $(this).remove();
+    });
+  });
+  inputField.val("");
   selectField.empty();
 });
 
 $(document).ready(function(){
+  //console.log(getCityListFromUL());
   loadCityList();
   loadAdverts("http://178.62.229.113/results/1");
   Statements.requestAdress = 'http://178.62.229.113/results/';
@@ -31,12 +38,12 @@ $(document).ready(function(){
 });
 
 $(".filter-button").click(function(){
-
-  loadAdverts("http://178.62.229.113/filter/include/city/"+inputField.val());
+  loadAdverts("http://178.62.229.113/filter/include/"+getCityListFromUL());
   Statements.currentPage = 1;
-  Statements.requestAdress = "http://178.62.229.113/filter/include/city/"+inputField.val()+"/";
-
+  Statements.requestAdress = "http://178.62.229.113/filter/include/"+getCityListFromUL() +"/page/";
 });
+
+
 function loadAdverts(requestAdress){
   $('.global-preloader').show();
   $.getJSON(requestAdress)
@@ -168,4 +175,12 @@ function bindEventsToPaginator(){
 
 function cutDescription(string){
     return string.substr(0,400) + "...";
+}
+
+function getCityListFromUL(){
+  var string = '';
+  for (var i = 0; i < $('.filtered-cities-list li').length; i++) {
+    string = string + $('.filtered-cities-list li')[i].innerText + ',';
+  }
+  return string.slice(0, -1);
 }

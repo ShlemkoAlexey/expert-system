@@ -95,7 +95,7 @@ body{
 .filtered-cities-list li{
   list-style: none;
   padding: 3px 6px;
-  margin: 3px 0;
+  margin: 3px 2px;
   display: inline-block;
   background: #DCB386;
   border-radius: 3px;
@@ -112,7 +112,8 @@ body{
   top:2px;
 }
 .filtered-cities-list li i:hover{
-  color: gray;
+  color: black;
+  cursor: pointer;
 }
 
 
