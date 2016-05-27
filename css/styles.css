@@ -103,6 +103,9 @@ body{
   font-size: 150%;
   font-weight: bold;
 }
+.filtered-cities-list li:hover{
+  background: #b88b58;
+}
 
 .filtered-cities-list li i{
   font-weight: bold;
@@ -148,6 +151,20 @@ body{
   color: white;
 }
 
+input[name="inc-exc-radio"]{
+  position: relative;
+  top: 2px;
+  margin: 5px;
+
+}
+label{
+  font-size: 125%;
+  font-weight: bold;
+  color: #784D1D;
+}
+
+
+
 
 
 .paginator{
@@ -176,8 +193,8 @@ body{
   background: #b88b58;
 }
 
-.paginator ul li + .current-page{
-  background: #784D1D;
+.paginator ul li.current-page{
+  background: #784D1D ;
 }
 
 .paginator ul li:first-child{

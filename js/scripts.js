@@ -30,7 +30,7 @@ $(document).on("click", ".city-options-list li", function(){
 });
 
 $(document).ready(function(){
-  //console.log(getCityListFromUL());
+
   loadCityList();
   loadAdverts("http://178.62.229.113/results/1");
   Statements.requestAdress = 'http://178.62.229.113/results/';
@@ -38,9 +38,16 @@ $(document).ready(function(){
 });
 
 $(".filter-button").click(function(){
-  loadAdverts("http://178.62.229.113/filter/include/"+getCityListFromUL());
-  Statements.currentPage = 1;
-  Statements.requestAdress = "http://178.62.229.113/filter/include/"+getCityListFromUL() +"/page/";
+  if ($('.filtered-cities-list li').length > 0) {
+    var filterOption = $("input:radio[name ='inc-exc-radio']:checked").val(); //  include/exclude switcher
+    console.log(filterOption);
+    loadAdverts("http://178.62.229.113/filter/"+filterOption+"/"+getCityListFromUL());
+    Statements.currentPage = 1;
+    Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption+"/"+getCityListFromUL() +"/page/";
+  }else {
+    alert('Please enter cities for search');
+  }
+
 });
 
 
@@ -48,7 +55,7 @@ function loadAdverts(requestAdress){
   $('.global-preloader').show();
   $.getJSON(requestAdress)
   .done(function(data){
-    console.log("adverts data loaded");
+    console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
     $(".results-block").empty();
     for (var i = 0; i < data.results.length; i++) {
       $(".results-block").append(createAdvertFrame(data.results[i].url, data.results[i].preview_url, data.results[i].city, data.results[i].actual_price, data.results[i].predicted_price, data.results[i].price_diff, data.results[i].has_garden, data.results[i].has_garage, data.results[i].house_type, data.results[i].rooms_count, data.results[i].bedrooms_count, data.results[i].description, data.results[i].area));
@@ -131,15 +138,25 @@ function loadCityList(){
 
 function createPaginator(currentPage, totalPages){
   $(".paginator ul").empty();
-  $(".paginator ul").append("<li class='first-page'>&laquo</li>");
   if ((currentPage-1) > 0) {
+    $(".paginator ul").append("<li class='first-page'>&laquo</li>");
+    $(".paginator ul").append("<li class='prev-page'>&#8249</li>");
+    if (currentPage-2 > 0) {
+      $(".paginator ul").append("<li class='prev-two-pages'> "+(currentPage-2)+" </li>");
+    }
     $(".paginator ul").append("<li class='prev-page'>" + (currentPage-1)+"</li>");
   }
   $(".paginator ul").append("<li class='current-page'>" + currentPage + "</li>");
   if ((currentPage+1) <= totalPages) {
     $(".paginator ul").append("<li class='next-page'>" + (currentPage+1) +"</li>");
+    if (currentPage+2 <= totalPages) {
+      $(".paginator ul").append("<li class='next-two-pages'> "+(currentPage+2)+" </li>");
+    }
+    $(".paginator ul").append("<li class='next-page'>&#8250</li>");
+    $(".paginator ul").append("<li  class='last-page'>&raquo</li>");
   }
-  $(".paginator ul").append("<li  class='last-page'>&raquo</li>");
+
+
   bindEventsToPaginator();
 }
 
@@ -168,8 +185,25 @@ function bindEventsToPaginator(){
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
+  $(".prev-two-pages").on("click", function(){
+    Statements.currentPage--;
+    Statements.currentPage--;
+    console.log(Statements.currentPage);
+    createPaginator(Statements.currentPage, Statements.totalPages);
+    loadAdverts(Statements.requestAdress + Statements.currentPage);
+  });
+  $(".next-two-pages").on("click", function(){
+    Statements.currentPage++;
+    Statements.currentPage++;
+    console.log(Statements.currentPage);
+    createPaginator(Statements.currentPage, Statements.totalPages);
+    loadAdverts(Statements.requestAdress + Statements.currentPage);
+  });
   $(".paginator ul li").on("click", function(){
-    $(document).scrollTop(0);
+
+    var offset = $(".paginator").offset().top;
+    console.log(offset);
+    $(document).scrollTop(offset);
   })
 }
 
