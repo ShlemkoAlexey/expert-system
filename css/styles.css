@@ -89,9 +89,31 @@ body{
 }
 
 
+.filtered-cities-list{
+    text-align: right;
+}
+.filtered-cities-list li{
+  list-style: none;
+  padding: 3px 6px;
+  margin: 3px 0;
+  display: inline-block;
+  background: #DCB386;
+  border-radius: 3px;
+  color: white;
+  font-size: 150%;
+  font-weight: bold;
+}
 
-
-
+.filtered-cities-list li i{
+  font-weight: bold;
+  margin-left: 5px;
+  position: relative;
+  font-size: 120%;
+  top:2px;
+}
+.filtered-cities-list li i:hover{
+  color: gray;
+}
 
 
 
@@ -274,8 +296,8 @@ body{
   position: relative;
   top: 3px;
 }
-.mdi-check,
-.mdi-close{
+.result-options p .mdi-check,
+.result-options p .mdi-close{
   font-size: 175% !important;
   position: relative;
   top: 3px;
