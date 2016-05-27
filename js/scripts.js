@@ -202,7 +202,6 @@ function bindEventsToPaginator(){
   $(".paginator ul li").on("click", function(){
 
     var offset = $(".paginator").offset().top;
-    console.log(offset);
     $(document).scrollTop(offset);
   })
 }

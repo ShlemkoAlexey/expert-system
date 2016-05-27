@@ -28,17 +28,30 @@
           <ul class="city-options-list">
 
           </ul>
-          <ul class="filtered-cities-list">
+          <div class="row">
+            <div class="col-xs-2">
+              <label>
+                <input type="radio" name="inc-exc-radio" value="include" checked>Include
+              </label>
+              <label>
+                <input type="radio" name="inc-exc-radio" value="exclude">Exclude
+              </label>
+            </div>
+            <div class="col-xs-10">
+              <ul class="filtered-cities-list">
 
-          </ul>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="col-xs-3">
           <button class="btn btn-block filter-button"><i class="mdi mdi-magnify"></i>Filter</button>
-          <label>
-            Include<input type="radio" name="inc-exc-radio" value="include" checked>
-          </label>
-          <label>
-            <input type="radio" name="inc-exc-radio" value="exclude">Exclude
+          <label>House type:
+          <select class="house-type-select">
+            <option>Both</option>
+            <option>Apartment</option>
+            <option>House</option>
+          </select>
           </label>
         </div>
       </div>

@@ -59,11 +59,11 @@ body{
   margin-top: 20px;
   background: #ffffff;
   width: 100%;
-  text-align: center;
   padding: 20px;
   border-top: 4px solid #b88b58;
 }
 .city-field{
+  margin-bottom: 10px;
   position: relative;
 }
 .city-options-list{
@@ -90,7 +90,7 @@ body{
 
 
 .filtered-cities-list{
-    text-align: right;
+    text-align: left;
 }
 .filtered-cities-list li{
   list-style: none;
@@ -155,14 +155,18 @@ input[name="inc-exc-radio"]{
   position: relative;
   top: 2px;
   margin: 5px;
-
 }
 label{
   font-size: 125%;
   font-weight: bold;
   color: #784D1D;
+  display: block;
 }
 
+.house-type-select{
+  margin-top: 10px;
+  width: auto;
+}
 
 
 
