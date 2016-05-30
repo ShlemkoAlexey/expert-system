@@ -144,6 +144,12 @@ function loadCityList(){
       citiesArray.push(capitalizeFirstLetter(data[i]));
     }
     console.log("city list loaded");
+    //del bot
+    $( "#test" ).autocomplete({
+      source: citiesArray,
+      minLength: 2
+    });
+    //del top
   })
   .fail(function(){
     console.log("city list load failed");

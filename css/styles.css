@@ -298,8 +298,8 @@ label{
   width: 100%;
   padding: 20px;
   border-top: 4px solid #b88b58;
-  font-size: 300%;
-  font-family: 'Bangers', cursive;
+  font-size: 125%;
+  text-align: right;
 }
 
 .mdi-arrow-down-bold{
