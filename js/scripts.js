@@ -44,10 +44,10 @@ $(".filter-button").click(function(){
 
     if ($(".house-type-select").val() == "House") {
 
-      typeFilterOption = "/type/0";
+      typeFilterOption = "/type/1";
     }else if ($(".house-type-select").val() == "Apartment") {
 
-      typeFilterOption = "/type/1";
+      typeFilterOption = "/type/0";
     }
 
 
@@ -57,7 +57,9 @@ $(".filter-button").click(function(){
     Statements.currentPage = 1;
     Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption +"/"+getCityListFromUL()+ typeFilterOption +"/page/";
   }else {
-    alert('Please enter cities for search');
+    loadAdverts("http://178.62.229.113/results/1");
+    Statements.requestAdress = 'http://178.62.229.113/results/';
+    createPaginator(Statements.currentPage, Statements.totalPages);
   }
 
 });
@@ -70,7 +72,7 @@ function loadAdverts(requestAdress){
     console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
     $(".results-block").empty();
     for (var i = 0; i < data.results.length; i++) {
-      $(".results-block").append(createAdvertFrame(data.results[i].url, data.results[i].preview_url, data.results[i].city, data.results[i].actual_price, data.results[i].predicted_price, data.results[i].price_diff, data.results[i].has_garden, data.results[i].has_garage, data.results[i].house_type, data.results[i].rooms_count, data.results[i].bedrooms_count, data.results[i].description, data.results[i].area));
+      $(".results-block").append(createAdvertFrame(data.results[i].url, data.results[i].preview_url, data.results[i].city, data.results[i].actual_price, data.results[i].predicted_price, data.results[i].price_diff, data.results[i].has_garden, data.results[i].has_garage, data.results[i].house_type, data.results[i].rooms_count, data.results[i].bedrooms_count, data.results[i].description, data.results[i].area, data.results[i].post_code));
     }
     Statements.totalPages = data.pages_count;
     createPaginator(Statements.currentPage, Statements.totalPages);
@@ -104,7 +106,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-function createAdvertFrame(url, image_url, location, actual_price, predicted_price, price_diff, has_garden, has_garage, type, rooms, bedrooms, description, area){
+function createAdvertFrame(url, image_url, location, actual_price, predicted_price, price_diff, has_garden, has_garage, type, rooms, bedrooms, description, area, post_code){
   predicted_price = predicted_price.toFixed();
   price_diff = price_diff.toFixed();
 
@@ -127,12 +129,12 @@ function createAdvertFrame(url, image_url, location, actual_price, predicted_pri
     price_comparison = '<p data-toggle="tooltip" data-placement="bottom" title="Underrated"><i class="mdi mdi-arrow-down-bold"></i> <span style="color:green">'+(price_diff*(-1))+'€</span></p>';
   }
 
-  if (type == 0) {
+  if (type == 1) {
     type = "House"
   }else {
     type = "Apartment"
   }
-  return '<div class="result">  <div class="row">  <div class="col-xs-2">  <a href="'+url+'" target="_blank"><img src="'+image_url+'" alt="result-image" class="result-image"/></a>  </div>  <div class="col-xs-10">  <a class="result-city-name" href="'+url+'" target="_blank">'+capitalizeFirstLetter(location)+', postcode</p></a>  <div class="row">  <div class="col-xs-8">  <div class="row">  <div class="col-xs-5 result-data">  <p>  Type: '+type+'  </p>  <p>  Rooms: '+rooms+' ('+bedrooms+' bedrooms)  </p>  <p>  Area: '+area+' m<sup>3</sup>  </p>  </div>  <div class="col-xs-7 result-options">  <p>  Garden:'+has_garden+'  </p>  <p>  Garage: '+has_garage+'  </p>  </div>  </div>  <p class="result-description">  '+cutDescription(description)+'  </p>  <a target="_blank" href="'+url+'" class="result-link">  Go to advert...  </a>  </div>  <div class="col-xs-4 result-prices">  <p>  actual:<span>'+actual_price+'€</span>  </p>  <p>  predicted:<span>'+predicted_price+'€</span>  </p>  '+price_comparison+'  </div>  </div>  </div>  </div>  </div>';
+  return '<div class="result">  <div class="row">  <div class="col-xs-2">  <a href="'+url+'" target="_blank"><img src="'+image_url+'" alt="result-image" class="result-image"/></a>  </div>  <div class="col-xs-10">  <a class="result-city-name" href="'+url+'" target="_blank">'+capitalizeFirstLetter(location)+', ' + post_code + '</p></a>  <div class="row">  <div class="col-xs-8">  <div class="row">  <div class="col-xs-5 result-data">  <p>  Type: '+type+'  </p>  <p>  Rooms: '+rooms+' ('+bedrooms+' bedrooms)  </p>  <p>  Area: '+area+' m<sup>3</sup>  </p>  </div>  <div class="col-xs-7 result-options">  <p>  Garden:'+has_garden+'  </p>  <p>  Garage: '+has_garage+'  </p>  </div>  </div>  <p class="result-description">  '+cutDescription(description)+'  </p>  <a target="_blank" href="'+url+'" class="result-link">  Go to advert...  </a>  </div>  <div class="col-xs-4 result-prices">  <p>  actual:<span>'+actual_price+'€</span>  </p>  <p>  predicted:<span>'+predicted_price+'€</span>  </p>  '+price_comparison+'  </div>  </div>  </div>  </div>  </div>';
 }
 
 function loadCityList(){
