@@ -145,10 +145,12 @@ function loadCityList(){
     }
     console.log("city list loaded");
     //del bot
+    /*
     $( "#test" ).autocomplete({
       source: citiesArray,
       minLength: 2
     });
+    */
     //del top
   })
   .fail(function(){
