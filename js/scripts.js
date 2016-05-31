@@ -1,4 +1,5 @@
 var citiesArray = [];
+var defaultAdress = 'http://178.62.229.113/filter/exclude/muhosransk/';
 // var inputField = $('.city-field');
 // var selectField = $(".city-options-list");
 // var selectFieldItem = $(".city-options-list li");
@@ -41,8 +42,8 @@ $(this).remove();
 
 $(document).ready(function(){
   loadCityList();
-  loadAdverts("http://178.62.229.113/results/1");
-  Statements.requestAdress = 'http://178.62.229.113/results/';
+  loadAdverts(defaultAdress+"page/1");
+  Statements.requestAdress = defaultAdress + "page/";
   createPaginator(Statements.currentPage, Statements.totalPages);
 });
 
@@ -66,8 +67,17 @@ $(".filter-button").click(function(){
     Statements.currentPage = 1;
     Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption +"/"+getCityListFromUL()+ typeFilterOption +"/page/";
   }else {
-    loadAdverts("http://178.62.229.113/results/1");
-    Statements.requestAdress = 'http://178.62.229.113/results/';
+    Statements.currentPage = 1;
+    var typeFilterOption = '';
+    if ($(".house-type-select").val() == "House") {
+
+      typeFilterOption = "type/1/";
+    }else if ($(".house-type-select").val() == "Apartment") {
+
+      typeFilterOption = "type/0/";
+    }
+    loadAdverts(defaultAdress+typeFilterOption+"page/1");
+    Statements.requestAdress = defaultAdress +typeFilterOption+ "page/";
     createPaginator(Statements.currentPage, Statements.totalPages);
   }
 
@@ -245,11 +255,17 @@ function bindEventsToPaginator(){
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
+
   $(".paginator ul li").on("click", function(){
 
     var offset = $(".paginator").offset().top;
-    $(document).scrollTop(offset);
+    if ($(document).scrollTop() > offset) {
+      $(document).scrollTop(offset);
+    }
+
+
   })
+
 }
 
 function cutDescription(string){
