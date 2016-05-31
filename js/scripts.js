@@ -1,7 +1,7 @@
 var citiesArray = [];
-var inputField = $('.city-field');
-var selectField = $(".city-options-list");
-var selectFieldItem = $(".city-options-list li");
+// var inputField = $('.city-field');
+// var selectField = $(".city-options-list");
+// var selectFieldItem = $(".city-options-list li");
 
 var Statements = {
   "currentPage": 1,
@@ -10,27 +10,36 @@ var Statements = {
 }
 
 
-inputField.keyup(function (event) {
-  if (inputField.val().length > 0) {
-    showCityListForSelect(citiesArray, inputField.val(), inputField, selectField);
-  }else {
-    selectField.empty();
-  }
-});
+// inputField.keyup(function (event) {
+//   if (inputField.val().length > 0) {
+//     showCityListForSelect(citiesArray, inputField.val(), inputField, selectField);
+//   }else {
+//     selectField.empty();
+//   }
+// });
 
-$(document).on("click", ".city-options-list li", function(){
-  $('.filtered-cities-list').append( "<li>"+$(this).html()+"<i class='mdi mdi-close'></i></li>" );
-  $('.filtered-cities-list li i').on('click', function(){
-    $(this).parent().fadeOut(200, function(){
-      $(this).remove();
-    });
-  });
-  inputField.val("");
-  selectField.empty();
+// $(document).on("click", ".city-options-list li", function(){
+//   $('.filtered-cities-list').append( "<li>"+$(this).html()+"<i class='mdi mdi-close'></i></li>" );
+//   $('.filtered-cities-list li i').on('click', function(){
+//     $(this).parent().fadeOut(200, function(){
+//       $(this).remove();
+//     });
+//   });
+//   inputField.val("");
+//   selectField.empty();
+// });
+
+/*
+$(document).on("click", function(){
+$('.filtered-cities-list li i').on('click', function(){
+$(this).parent().fadeOut(200, function(){
+$(this).remove();
 });
+});
+});
+*/
 
 $(document).ready(function(){
-
   loadCityList();
   loadAdverts("http://178.62.229.113/results/1");
   Statements.requestAdress = 'http://178.62.229.113/results/';
@@ -99,7 +108,7 @@ function showCityListForSelect(array, string, input, list){
   for (var i = 0; i < arrayForOutput.length; i++) {
     list.append("<li>"+arrayForOutput[i]+"</li>");
   }
-
+  arrayForOutput.sort();
 }
 
 function capitalizeFirstLetter(string) {
@@ -144,14 +153,29 @@ function loadCityList(){
       citiesArray.push(capitalizeFirstLetter(data[i]));
     }
     console.log("city list loaded");
-    //del bot
-    /*
-    $( "#test" ).autocomplete({
+
+
+    $( ".city-field" ).autocomplete({
       source: citiesArray,
-      minLength: 2
+      minLength: 2,
+      select: function( event, ui ) {
+        $('.filtered-cities-list').append( "<li>" + ui.item.value + "<i class='mdi mdi-close'></i></li>" );
+        $('.filtered-cities-list li i').unbind();
+        $('.filtered-cities-list li i').on('click', function(){
+
+          citiesArray.push($(this).parent()[0].innerText);
+          $(this).parent().remove();
+          citiesArray.sort();
+        });
+        removeValueFromArray(citiesArray, ui.item.value);
+        $(".city-field").val();
+        $(this).val('');
+        return false;
+      },
+      delay: 150
     });
-    */
-    //del top
+
+
   })
   .fail(function(){
     console.log("city list load failed");
@@ -229,7 +253,7 @@ function bindEventsToPaginator(){
 }
 
 function cutDescription(string){
-    return string.substr(0,400) + "...";
+  return string.substr(0,400) + "...";
 }
 
 function getCityListFromUL(){
@@ -239,3 +263,11 @@ function getCityListFromUL(){
   }
   return string.slice(0, -1);
 }
+
+function removeValueFromArray(array, value){
+  for (var i = 0; i < array.length; i++) {
+    if (value == array[i]) {
+      array.splice(i, 1);
+    }
+  }
+};
