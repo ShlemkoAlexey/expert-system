@@ -11,6 +11,10 @@ body{
   background: #e6e6e6;
   font-size: 10px;
   color: #404040;
+  background-image: url('../src/backgroundM-01.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .global-preloader{
@@ -43,16 +47,23 @@ body{
 }
 .header-block{
   background: #262626;
-  font-size: 300%;
-  font-family: 'Bangers', cursive;
+  font-size: 450%;
+  font-family: 'Playfair Display SC', serif;
+  font-weight: 900;
   padding: 5px 0 5px 30px;
+  background-image: url('../src/header.png');
+  background-position: center;
+  height: 200px;
+  position: relative;
 }
 .header-block a,
 .header-block a:hover,
 .header-block a:active,
 .header-block a:focus{
   text-decoration: none;
-  color: #b88b58
+  color: #b88b58;
+  position: absolute;
+  bottom: 10px;
 }
 
 .filters-block{
@@ -301,7 +312,9 @@ label{
   font-size: 125%;
   text-align: right;
 }
-
+.footer-block p:last-child{
+  margin: 0;
+}
 .mdi-arrow-down-bold{
   color: green;
   font-size: 175% !important;
