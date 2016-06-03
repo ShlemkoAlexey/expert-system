@@ -130,9 +130,20 @@ body{
   cursor: pointer;
 }
 
+.ui-widget-header{
+  background: #DCB386 !important;
+}
 
-
-
+.ui-state-default{
+  background: #b88b58 !important;
+  border: 1px solid #784D1D !important;
+}
+.price-min,
+.price-max,
+.area-min,
+.area-max{
+  font-weight: bold;
+}
 
 
 

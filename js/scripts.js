@@ -45,6 +45,7 @@ $(document).ready(function(){
   loadAdverts(defaultAdress+"page/1");
   Statements.requestAdress = defaultAdress + "page/";
   createPaginator(Statements.currentPage, Statements.totalPages);
+  createSliders();
 });
 
 $(".filter-button").click(function(){
@@ -287,3 +288,40 @@ function removeValueFromArray(array, value){
     }
   }
 };
+
+function createSliders(){
+  $(".price-slider").slider({
+    animate: "fast",
+    min: 0,
+    max: 1500000,
+    values: [0, 1500000],
+    range: true,
+    slide: function( event, ui ) {
+      refreshSliderValues();
+    },
+    change: function( event, ui ) {
+      refreshSliderValues();
+    }
+  });
+
+  $(".area-slider").slider({
+    animate: "fast",
+    min: 50,
+    max: 450,
+    values: [50, 450],
+    range: true,
+    slide: function( event, ui ) {
+      refreshSliderValues();
+    },
+    change: function( event, ui ) {
+      refreshSliderValues();
+    }
+  });
+}
+
+function refreshSliderValues(){
+  $(".price-min").html( numeral($(".price-slider").slider("values", 0)).format('0,0') );
+  $(".price-max").html( numeral($(".price-slider").slider("values", 1)).format('0,0') );
+  $(".area-min").html($(".area-slider").slider("values", 0));
+  $(".area-max").html($(".area-slider").slider("values", 1));
+}
