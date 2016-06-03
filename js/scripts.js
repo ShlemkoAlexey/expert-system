@@ -1,44 +1,11 @@
 var citiesArray = [];
 var defaultAdress = 'http://178.62.229.113/filter/exclude/muhosransk/';
-// var inputField = $('.city-field');
-// var selectField = $(".city-options-list");
-// var selectFieldItem = $(".city-options-list li");
-
 var Statements = {
   "currentPage": 1,
   "totalPages": 5,
   "requestAdress": ""
 }
 
-
-// inputField.keyup(function (event) {
-//   if (inputField.val().length > 0) {
-//     showCityListForSelect(citiesArray, inputField.val(), inputField, selectField);
-//   }else {
-//     selectField.empty();
-//   }
-// });
-
-// $(document).on("click", ".city-options-list li", function(){
-//   $('.filtered-cities-list').append( "<li>"+$(this).html()+"<i class='mdi mdi-close'></i></li>" );
-//   $('.filtered-cities-list li i').on('click', function(){
-//     $(this).parent().fadeOut(200, function(){
-//       $(this).remove();
-//     });
-//   });
-//   inputField.val("");
-//   selectField.empty();
-// });
-
-/*
-$(document).on("click", function(){
-$('.filtered-cities-list li i').on('click', function(){
-$(this).parent().fadeOut(200, function(){
-$(this).remove();
-});
-});
-});
-*/
 
 $(document).ready(function(){
   loadCityList();
@@ -181,7 +148,11 @@ function loadCityList(){
         removeValueFromArray(citiesArray, ui.item.value);
         $(".city-field").val();
         $(this).val('');
+        $('.filtered-cities-list li:last-child').addClass("background-red", 350, function(){
+          $(this).removeClass("background-red", 350);
+        });
         return false;
+
       },
       delay: 150
     });
@@ -290,33 +261,43 @@ function removeValueFromArray(array, value){
 };
 
 function createSliders(){
-  $(".price-slider").slider({
-    animate: "fast",
-    min: 0,
-    max: 1500000,
-    values: [0, 1500000],
-    range: true,
-    slide: function( event, ui ) {
-      refreshSliderValues();
-    },
-    change: function( event, ui ) {
-      refreshSliderValues();
-    }
+  $.getJSON('http://178.62.229.113:8080/filter_limits')
+  .done(function(data){
+    $(".price-slider").slider({
+      animate: "fast",
+      min: +data.min_price,
+      max: +data.max_price,
+      values: [+data.min_price, +data.max_price],
+      range: true,
+      step: 1000,
+      slide: function( event, ui ) {
+        refreshSliderValues();
+      },
+      change: function( event, ui ) {
+        refreshSliderValues();
+      }
+    });
+
+    $(".area-slider").slider({
+      animate: "fast",
+      min: +data.min_area,
+      max: +data.max_area,
+      values: [+data.min_area, +data.max_area],
+      range: true,
+      slide: function( event, ui ) {
+        refreshSliderValues();
+      },
+      change: function( event, ui ) {
+        refreshSliderValues();
+      }
+    });
+    refreshSliderValues();
+
+  })
+  .fail(function(){
+    console.log("sliders data load failed");
   });
 
-  $(".area-slider").slider({
-    animate: "fast",
-    min: 50,
-    max: 450,
-    values: [50, 450],
-    range: true,
-    slide: function( event, ui ) {
-      refreshSliderValues();
-    },
-    change: function( event, ui ) {
-      refreshSliderValues();
-    }
-  });
 }
 
 function refreshSliderValues(){

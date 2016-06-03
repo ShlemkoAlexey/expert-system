@@ -46,13 +46,14 @@ body{
   border: none;
 }
 .header-block{
-  background: #262626;
+  background: #b88b58;
   font-size: 450%;
   font-family: 'Playfair Display SC', serif;
   font-weight: 900;
   padding: 5px 0 5px 30px;
   background-image: url('../src/header.png');
   background-position: center;
+  background-size: cover;
   height: 200px;
   position: relative;
 }
@@ -77,27 +78,7 @@ body{
   margin-bottom: 10px;
   position: relative;
 }
-.city-options-list{
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: left;
-  position: absolute;
-  z-index: 10;
-}
-.city-options-list li{
-  padding: 5px 20px;
-  font-size: 150%;
-  background: #ffffff;
-}
 
-.city-options-list li:nth-child(n+6){
-  display: none;
-}
-.city-options-list li:hover{
-  cursor: pointer;
-  background: lightyellow;
-}
 
 
 .filtered-cities-list{
@@ -113,7 +94,13 @@ body{
   color: white;
   font-size: 150%;
   font-weight: bold;
+
 }
+
+.filtered-cities-list li.background-red{
+  background: red;
+}
+
 .filtered-cities-list li:hover{
   background: #b88b58;
 }
