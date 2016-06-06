@@ -1,5 +1,5 @@
 var citiesArray = [];
-var defaultAdress = 'http://178.62.229.113/filter/exclude/muhosransk/';
+var defaultAdress = 'http://178.62.229.113:8080/filter?city_filter=muhosransk&city_mode=0&page_number=';
 var Statements = {
   "currentPage": 1,
   "totalPages": 5,
@@ -9,45 +9,80 @@ var Statements = {
 
 $(document).ready(function(){
   loadCityList();
-  loadAdverts(defaultAdress+"page/1");
-  Statements.requestAdress = defaultAdress + "page/";
+  loadAdverts(defaultAdress + Statements.currentPage);
+  Statements.requestAdress = defaultAdress;
   createPaginator(Statements.currentPage, Statements.totalPages);
   createSliders();
 });
 
 $(".filter-button").click(function(){
-  if ($('.filtered-cities-list li').length > 0) {
-    var filterOption = $("input:radio[name ='inc-exc-radio']:checked").val(); //  include/exclude switcher
-    var typeFilterOption = "";
+  var cityList;
+  var filterOption;
+  var typeFilterOption = '';
+  var minPriceOption;
+  var maxPriceOption;
+  var minAreaOption;
+  var maxAreaOption;
 
-    if ($(".house-type-select").val() == "House") {
 
-      typeFilterOption = "/type/1";
-    }else if ($(".house-type-select").val() == "Apartment") {
-
-      typeFilterOption = "/type/0";
+  if ($('.filtered-cities-list li').length > 0){
+    cityList = "&city_filter="+getCityListFromUL();
+    if ($("input:radio[name ='inc-exc-radio']:checked").val() == "include") {
+      filterOption = "&city_mode=1";
+    }else{
+      filterOption = "&city_mode=0";
     }
-
-
-    console.log(filterOption);
-
-    loadAdverts("http://178.62.229.113/filter/"+ filterOption + "/"+getCityListFromUL()+ typeFilterOption);
-    Statements.currentPage = 1;
-    Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption +"/"+getCityListFromUL()+ typeFilterOption +"/page/";
   }else {
-    Statements.currentPage = 1;
-    var typeFilterOption = '';
-    if ($(".house-type-select").val() == "House") {
-
-      typeFilterOption = "type/1/";
-    }else if ($(".house-type-select").val() == "Apartment") {
-
-      typeFilterOption = "type/0/";
-    }
-    loadAdverts(defaultAdress+typeFilterOption+"page/1");
-    Statements.requestAdress = defaultAdress +typeFilterOption+ "page/";
-    createPaginator(Statements.currentPage, Statements.totalPages);
+    cityList = "&city_filter=muhosransk";
+    filterOption = "&city_mode=0";
   }
+
+  if ($(".house-type-select").val() == "House") {
+    typeFilterOption = "&type_filter=1";
+  }else if ($(".house-type-select").val() == "Apartment") {
+    typeFilterOption = "&type_filter=0";
+  }
+
+
+
+
+  minPriceOption = "&price_start="+$(".price-slider").slider("values", 0);
+  maxPriceOption = "&price_end="+$(".price-slider").slider("values", 1);
+  minAreaOption = "&min_area="+$(".area-slider").slider("values", 0);
+  maxAreaOption = "&max_area="+$(".area-slider").slider("values", 1);
+
+  Statements.requestAdress = "http://178.62.229.113:8080/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + "&page_number=";
+
+  Statements.currentPage = 1;
+  loadAdverts(Statements.requestAdress+Statements.currentPage);
+
+
+
+  /*
+  if ($('.filtered-cities-list li').length > 0) {
+  var filterOption = $("input:radio[name ='inc-exc-radio']:checked").val(); //  include/exclude switcher
+  var typeFilterOption = "";
+  if ($(".house-type-select").val() == "House") {
+  typeFilterOption = "&type_filter=1";
+}else if ($(".house-type-select").val() == "Apartment") {
+typeFilterOption = "&type_filter=0";
+}
+console.log(filterOption);
+loadAdverts("http://178.62.229.113:8080/filter?city_filter="+ "/"+getCityListFromUL() + filterOption + typeFilterOption);
+Statements.currentPage = 1;
+Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption +"/"+getCityListFromUL()+ typeFilterOption;
+}else{
+Statements.currentPage = 1;
+var typeFilterOption = '';
+if ($(".house-type-select").val() == "House") {
+typeFilterOption = "type/1/";
+}else if ($(".house-type-select").val() == "Apartment") {
+typeFilterOption = "type/0/";
+}
+loadAdverts(defaultAdress+typeFilterOption+"page/1");
+Statements.requestAdress = defaultAdress +typeFilterOption+ "page/";
+createPaginator(Statements.currentPage, Statements.totalPages);
+}*/
 
 });
 
@@ -64,6 +99,11 @@ function loadAdverts(requestAdress){
     Statements.totalPages = data.pages_count;
     createPaginator(Statements.currentPage, Statements.totalPages);
     $('.result-prices p').tooltip();
+
+    if ($(".results-block")[0].childElementCount == 0) {
+      console.log("No results found for this parameters");
+      $(".results-block").append("<div style='font-size: 200%; height:150px; text-align:center;'><i>No results found for this parameters.</i></div>");
+    }
     $('.global-preloader').hide();
   })
   .fail(function(){
@@ -191,39 +231,39 @@ function createPaginator(currentPage, totalPages){
 function bindEventsToPaginator(){
   $(".first-page").on("click", function(){
     Statements.currentPage = 1;
-    console.log(Statements.currentPage);
+
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".last-page").on("click", function(){
     Statements.currentPage = Statements.totalPages;
-    console.log(Statements.currentPage);
+
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".prev-page").on("click", function(){
     Statements.currentPage--;
-    console.log(Statements.currentPage);
+
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".next-page").on("click", function(){
     Statements.currentPage++;
-    console.log(Statements.currentPage);
+
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".prev-two-pages").on("click", function(){
     Statements.currentPage--;
     Statements.currentPage--;
-    console.log(Statements.currentPage);
+
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".next-two-pages").on("click", function(){
     Statements.currentPage++;
     Statements.currentPage++;
-    console.log(Statements.currentPage);
+
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
