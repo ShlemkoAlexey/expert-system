@@ -1,11 +1,12 @@
 var citiesArray = [];
-var defaultAdress = 'http://178.62.229.113:8080/filter?city_filter=muhosransk&city_mode=0&page_number=';
+
 var Statements = {
   "currentPage": 1,
   "totalPages": 5,
-  "requestAdress": ""
+  "requestAdress": "",
+  "requestPort": 80
 }
-
+var defaultAdress = 'http://178.62.229.113:'+Statements.requestPort+'/filter?city_filter=muhosransk&city_mode=0&page_number=';
 
 $(document).ready(function(){
   loadCityList();
@@ -51,39 +52,10 @@ $(".filter-button").click(function(){
   minAreaOption = "&min_area="+$(".area-slider").slider("values", 0);
   maxAreaOption = "&max_area="+$(".area-slider").slider("values", 1);
 
-  Statements.requestAdress = "http://178.62.229.113:8080/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + "&page_number=";
+  Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + "&page_number=";
 
   Statements.currentPage = 1;
   loadAdverts(Statements.requestAdress+Statements.currentPage);
-
-
-
-  /*
-  if ($('.filtered-cities-list li').length > 0) {
-  var filterOption = $("input:radio[name ='inc-exc-radio']:checked").val(); //  include/exclude switcher
-  var typeFilterOption = "";
-  if ($(".house-type-select").val() == "House") {
-  typeFilterOption = "&type_filter=1";
-}else if ($(".house-type-select").val() == "Apartment") {
-typeFilterOption = "&type_filter=0";
-}
-console.log(filterOption);
-loadAdverts("http://178.62.229.113:8080/filter?city_filter="+ "/"+getCityListFromUL() + filterOption + typeFilterOption);
-Statements.currentPage = 1;
-Statements.requestAdress = "http://178.62.229.113/filter/"+filterOption +"/"+getCityListFromUL()+ typeFilterOption;
-}else{
-Statements.currentPage = 1;
-var typeFilterOption = '';
-if ($(".house-type-select").val() == "House") {
-typeFilterOption = "type/1/";
-}else if ($(".house-type-select").val() == "Apartment") {
-typeFilterOption = "type/0/";
-}
-loadAdverts(defaultAdress+typeFilterOption+"page/1");
-Statements.requestAdress = defaultAdress +typeFilterOption+ "page/";
-createPaginator(Statements.currentPage, Statements.totalPages);
-}*/
-
 });
 
 
@@ -91,6 +63,7 @@ function loadAdverts(requestAdress){
   $('.global-preloader').show();
   $.getJSON(requestAdress)
   .done(function(data){
+    console.log("request port "+ Statements.requestPort);
     console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
     $(".results-block").empty();
     for (var i = 0; i < data.results.length; i++) {
@@ -301,7 +274,7 @@ function removeValueFromArray(array, value){
 };
 
 function createSliders(){
-  $.getJSON('http://178.62.229.113:8080/filter_limits')
+  $.getJSON('http://178.62.229.113:'+Statements.requestPort+'/filter_limits')
   .done(function(data){
     $(".price-slider").slider({
       animate: "fast",
