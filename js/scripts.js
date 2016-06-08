@@ -26,7 +26,7 @@ $(".filter-button").click(function(){
   var minAreaOption;
   var maxAreaOption;
   var predictionType;
-
+  $(".mdi").removeClass("mdi-black");
 
   if ($('.filtered-cities-list li').length > 0){
     cityList = "&city_filter="+getCityListFromUL();
@@ -61,60 +61,61 @@ $(".filter-button").click(function(){
 
   Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + predictionType + Statements.sortType + "&page_number=";
 
+  Statements.sortType = "";
   Statements.currentPage = 1;
   loadAdverts(Statements.requestAdress+Statements.currentPage);
 });
 
 $(".sort-area-asc").click(function(){
   Statements.sortType = "&sort_by=area&sort_direction=-1";
-  $(".mdi").removeClass("mdi-black");
+$(".filter-button").trigger("click");
   $(this).addClass("mdi-black");
-  $(".filter-button").trigger("click");
+
 });
 $(".sort-area-desc").click(function(){
   Statements.sortType = "&sort_by=area&sort_direction=1";
-  $(".mdi").removeClass("mdi-black");
-  $(this).addClass("mdi-black");
   $(".filter-button").trigger("click");
+  $(this).addClass("mdi-black");
+
 });
 
 $(".sort-diff-asc").click(function(){
   Statements.sortType = "&sort_by=price_diff&sort_direction=-1";
-  $(".mdi").removeClass("mdi-black");
+$(".filter-button").trigger("click");
   $(this).addClass("mdi-black");
-  $(".filter-button").trigger("click");
+
 });
 $(".sort-diff-desc").click(function(){
   Statements.sortType = "&sort_by=price_diff&sort_direction=1";
-  $(".mdi").removeClass("mdi-black");
+$(".filter-button").trigger("click");
   $(this).addClass("mdi-black");
-  $(".filter-button").trigger("click");
+
 });
 
 $(".sort-actual-asc").click(function(){
   Statements.sortType = "&sort_by=actual_price&sort_direction=-1";
-  $(".mdi").removeClass("mdi-black");
-  $(this).addClass("mdi-black");
   $(".filter-button").trigger("click");
+  $(this).addClass("mdi-black");
+
 });
 $(".sort-actual-desc").click(function(){
   Statements.sortType = "&sort_by=actual_price&sort_direction=1";
-  $(".mdi").removeClass("mdi-black");
-  $(this).addClass("mdi-black");
   $(".filter-button").trigger("click");
+  $(this).addClass("mdi-black");
+
 });
 
 $(".sort-predicted-asc").click(function(){
   Statements.sortType = "&sort_by=predicted_price&sort_direction=-1";
-  $(".mdi").removeClass("mdi-black");
-  $(this).addClass("mdi-black");
   $(".filter-button").trigger("click");
+  $(this).addClass("mdi-black");
+
 });
 $(".sort-predicted-desc").click(function(){
   Statements.sortType = "&sort_by=predicted_price&sort_direction=1";
-  $(".mdi").removeClass("mdi-black");
-  $(this).addClass("mdi-black");
   $(".filter-button").trigger("click");
+  $(this).addClass("mdi-black");
+
 });
 
 
@@ -125,7 +126,7 @@ function loadAdverts(requestAdress){
   .done(function(data){
     console.log("request port "+ Statements.requestPort);
     console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
-    console.log("sort type is "+ Statements.sortType);
+  
     $(".results-block").empty();
     for (var i = 0; i < data.results.length; i++) {
       $(".results-block").append(createAdvertFrame(data.results[i].url, data.results[i].preview_url, data.results[i].city, data.results[i].actual_price, data.results[i].predicted_price, data.results[i].price_diff, data.results[i].has_garden, data.results[i].has_garage, data.results[i].house_type, data.results[i].rooms_count, data.results[i].bedrooms_count, data.results[i].description, data.results[i].area, data.results[i].post_code));
