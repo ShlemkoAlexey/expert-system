@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Project Estate</title>
@@ -10,10 +10,10 @@
   <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-<script src="js/analytics.js"></script>
+  <script src="js/analytics.js"></script>
 
 
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
 </head>
 <body>
@@ -21,77 +21,113 @@
   <input type="text" placeholder="This is testing field" id="test">
   <p id="testlist">
 
-  </p>
-   del top -->
-  <div class="global-preloader">
-    <div>
-      <img src="src/preloader.gif" alt="preloader">
-    </div>
+</p>
+del top -->
+<div class="global-preloader">
+  <div>
+    <img src="src/preloader.gif" alt="preloader">
   </div>
-  <div class="header-block">
-    <a href="index.html">Project Estate</a>
-  </div>
-  <div class="container">
-    <div class="filters-block">
+</div>
+<div class="header-block">
+  <a href="index.html">Project Estate</a>
+</div>
+<div class="container">
+  <div class="filters-block">
+    <div class="row">
+      <div class="col-xs-8">
+        <input type="text" class="form-control city-field" placeholder="Enter city name...">
+        <!-- <ul class="city-options-list">
+
+      </ul> -->
       <div class="row">
-        <div class="col-xs-9">
-          <input type="text" class="form-control city-field" placeholder="Enter city name...">
-          <!-- <ul class="city-options-list">
-
-          </ul> -->
-          <div class="row">
-            <div class="col-xs-2">
-              <label>
-                <input type="radio" name="inc-exc-radio" value="include" checked>Include
-              </label>
-              <label>
-                <input type="radio" name="inc-exc-radio" value="exclude">Exclude
-              </label>
-            </div>
-            <div class="col-xs-10">
-              <ul class="filtered-cities-list">
-
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-3">
-          <button class="btn btn-block filter-button"><i class="mdi mdi-magnify"></i>Filter</button>
-          <label>House type:
-          <select class="house-type-select">
-            <option>All</option>
-            <option>Apartment</option>
-            <option>House</option>
-          </select>
+        <div class="col-xs-2">
+          <label>
+            <input type="radio" name="inc-exc-radio" value="include" checked>Include
           </label>
+          <label>
+            <input type="radio" name="inc-exc-radio" value="exclude">Exclude
+          </label>
+        </div>
+        <div class="col-xs-10">
+          <ul class="filtered-cities-list">
 
-          <div class="price-slider"></div>
-          <p>Price from <span class="price-min"></span> € to <span class="price-max"></span> €</p>
-          <div class="area-slider"></div>
-          <p>Area from <span class="area-min"></span> m<sup>3</sup> to <span class="area-max"></span> m<sup>3</sup></p>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="paginator">
-      <ul></ul>
+    <div class="col-xs-4">
+      <button class="btn btn-block filter-button"><i class="mdi mdi-magnify"></i>Filter</button>
+      <table class="select-table">
+        <tr>
+          <td>
+            <label for="house-type-select">House type:</label>
+          </td>
+          <td>
+            <select name="house-type-select" class="house-type-select">
+              <option>All</option>
+              <option>Apartment</option>
+              <option>House</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="prediction-type-select">Prediction type:</label>
+          </td>
+          <td>
+            <select name="prediction-type-select"class="prediction-type-select">
+              <option>District model</option>
+              <option>Global model</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <div class="price-slider"></div>
+      <p>Price from <span class="price-min"></span> € to <span class="price-max"></span> €</p>
+      <div class="area-slider"></div>
+      <p>Area from <span class="area-min"></span> m<sup>3</sup> to <span class="area-max"></span> m<sup>3</sup></p>
     </div>
-    <div class="results-block">
-      <!-- <div class="result">
-      <div class="row">
-      <div class="col-xs-2">
-      <a href="http://www.funda.nl/" target="_blank"><img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" class="result-image"/></a>
-    </div>
-    <div class="col-xs-10">
-    <a class="result-city-name" href="http://www.funda.nl/" target="_blank">Amsterdam</p></a>
-    <div class="row">
-    <div class="col-xs-8">
-    <div class="row">
-    <div class="col-xs-5 result-data">
-    <p>
-    Type: House
-  </p>
-  <p>
-  Rooms: 4 (3)
+  </div>
+  <table class="sort-table">
+    <tr>
+      <td>
+          <i class="mdi mdi-sort-variant" style="cursor: default;"></i>Sort by:
+      </td>
+      <td>
+        <i class="mdi mdi-chevron-down"></i>Area<i class="mdi mdi-chevron-up"></i>
+      </td>
+      <td>
+        <i class="mdi mdi-chevron-down"></i>Price difference<i class="mdi mdi-chevron-up"></i>
+      </td>
+      <td>
+        <i class="mdi mdi-chevron-down"></i>Actual Price<i class="mdi mdi-chevron-up"></i>
+      </td>
+      <td>
+        <i class="mdi mdi-chevron-down"></i>Predicted price<i class="mdi mdi-chevron-up"></i>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="paginator">
+  <ul></ul>
+</div>
+<div class="results-block">
+  <!-- <div class="result">
+  <div class="row">
+  <div class="col-xs-2">
+  <a href="http://www.funda.nl/" target="_blank"><img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" class="result-image"/></a>
+</div>
+<div class="col-xs-10">
+<a class="result-city-name" href="http://www.funda.nl/" target="_blank">Amsterdam</p></a>
+<div class="row">
+<div class="col-xs-8">
+<div class="row">
+<div class="col-xs-5 result-data">
+<p>
+Type: House
+</p>
+<p>
+Rooms: 4 (3)
 </p>
 <p>
 Area: 120m<sup>3</sup>
@@ -158,6 +194,7 @@ predicted:<span>150000€</span>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.1/numeral.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="js/scripts.js"></script>

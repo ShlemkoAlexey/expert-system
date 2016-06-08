@@ -65,6 +65,7 @@ body{
   color: #b88b58;
   position: absolute;
   bottom: 10px;
+
 }
 
 .filters-block{
@@ -72,6 +73,7 @@ body{
   background: #ffffff;
   width: 100%;
   padding: 20px;
+  padding-bottom: 0;
   border-top: 4px solid #b88b58;
 }
 .city-field{
@@ -159,23 +161,82 @@ body{
   outline: none;
   color: white;
 }
-
+label{
+  font-size: 125%;
+  font-weight: bold;
+  color: #784D1D;
+}
 input[name="inc-exc-radio"]{
   position: relative;
   top: 2px;
   margin: 5px;
 }
-label{
+
+
+.select-table{
+  margin-top: 10px;
+  width: 100%;
+}
+.select-table tr td{
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+.select-table tr td label{
   font-size: 125%;
   font-weight: bold;
   color: #784D1D;
-  display: block;
+  margin: 5px;
+}
+.select-table tr td select{
+  width: auto;
+  width: 100%;
+  margin: 5px;
+  padding: 3px 5px;
+  color: #784D1D;
+  font-weight: bold;
+  font-size: 125%;
+  border-radius: 3px;
 }
 
-.house-type-select{
+.price-slider{
   margin-top: 10px;
-  width: auto;
 }
+
+
+.sort-table{
+  width: 100%;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 20px;
+}
+.sort-table tr{
+
+}
+.sort-table tr td{
+  width: 20%;
+  font-size: 125%;
+  font-weight: bold;
+  color: #DCB386;
+  text-align: center;
+}
+.sort-table tr td .mdi{
+  font-weight: bold;
+  font-size: 150%;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+}
+.sort-table tr td .mdi:hover{
+  color: #784D1D;
+}
+
+
+
+
+
+
+
+
 
 
 

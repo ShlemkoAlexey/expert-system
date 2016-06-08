@@ -24,6 +24,7 @@ $(".filter-button").click(function(){
   var maxPriceOption;
   var minAreaOption;
   var maxAreaOption;
+  var predictionType;
 
 
   if ($('.filtered-cities-list li').length > 0){
@@ -44,6 +45,11 @@ $(".filter-button").click(function(){
     typeFilterOption = "&type_filter=0";
   }
 
+  if ($('.prediction-type-select').val() == "District model") {
+    predictionType = "&district_model=1";
+  }else if($('.prediction-type-select').val() == "Global model"){
+    predictionType = "&district_model=0";
+  }
 
 
 
@@ -52,7 +58,7 @@ $(".filter-button").click(function(){
   minAreaOption = "&min_area="+$(".area-slider").slider("values", 0);
   maxAreaOption = "&max_area="+$(".area-slider").slider("values", 1);
 
-  Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + "&page_number=";
+  Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + predictionType + "&page_number=";
 
   Statements.currentPage = 1;
   loadAdverts(Statements.requestAdress+Statements.currentPage);
@@ -290,7 +296,7 @@ function createSliders(){
         refreshSliderValues();
       }
     });
-
+    $(".price-slider").draggable();
     $(".area-slider").slider({
       animate: "fast",
       min: +data.min_area,
@@ -304,6 +310,7 @@ function createSliders(){
         refreshSliderValues();
       }
     });
+    $(".area-slider").draggable();
     refreshSliderValues();
 
   })
