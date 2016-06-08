@@ -17,12 +17,6 @@
 
 </head>
 <body>
-  <!-- del bot
-  <input type="text" placeholder="This is testing field" id="test">
-  <p id="testlist">
-
-</p>
-del top -->
 <div class="global-preloader">
   <div>
     <img src="src/preloader.gif" alt="preloader">
@@ -36,9 +30,6 @@ del top -->
     <div class="row">
       <div class="col-xs-8">
         <input type="text" class="form-control city-field" placeholder="Enter city name...">
-        <!-- <ul class="city-options-list">
-
-      </ul> -->
       <div class="row">
         <div class="col-xs-2">
           <label>
@@ -88,25 +79,31 @@ del top -->
       <p>Area from <span class="area-min"></span> m<sup>3</sup> to <span class="area-max"></span> m<sup>3</sup></p>
     </div>
   </div>
-  <table class="sort-table">
+  <div class="sort-table">
+
+
+  <table>
     <tr>
       <td>
-          <i class="mdi mdi-sort-variant" style="cursor: default;"></i>Sort by:
+          <i class="mdi mdi-sort-variant" style="cursor: default; color: inherit;"></i>Sort by:
       </td>
       <td>
-        <i class="mdi mdi-chevron-down"></i>Area<i class="mdi mdi-chevron-up"></i>
+        <i class="mdi mdi-chevron-down sort-area-asc"></i>Area size<i class="mdi mdi-chevron-up sort-area-desc"></i>
       </td>
       <td>
-        <i class="mdi mdi-chevron-down"></i>Price difference<i class="mdi mdi-chevron-up"></i>
+        <i class="mdi mdi-chevron-down sort-diff-asc"></i>Price difference<i class="mdi mdi-chevron-up sort-diff-desc"></i>
       </td>
       <td>
-        <i class="mdi mdi-chevron-down"></i>Actual Price<i class="mdi mdi-chevron-up"></i>
+        <i class="mdi mdi-chevron-down sort-actual-asc"></i>Actual Price<i class="mdi mdi-chevron-up sort-actual-desc"></i>
       </td>
       <td>
-        <i class="mdi mdi-chevron-down"></i>Predicted price<i class="mdi mdi-chevron-up"></i>
+        <i class="mdi mdi-chevron-down sort-predicted-asc"></i>Predicted price<i class="mdi mdi-chevron-up sort-predicted-desc"></i>
       </td>
     </tr>
   </table>
+
+  </div>
+
 </div>
 <div class="paginator">
   <ul></ul>

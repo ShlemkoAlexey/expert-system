@@ -4,7 +4,8 @@ var Statements = {
   "currentPage": 1,
   "totalPages": 5,
   "requestAdress": "",
-  "requestPort": 80
+  "requestPort": 80,
+  "sortType": ""
 }
 var defaultAdress = 'http://178.62.229.113:'+Statements.requestPort+'/filter?city_filter=muhosransk&city_mode=0&page_number=';
 
@@ -58,11 +59,64 @@ $(".filter-button").click(function(){
   minAreaOption = "&min_area="+$(".area-slider").slider("values", 0);
   maxAreaOption = "&max_area="+$(".area-slider").slider("values", 1);
 
-  Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + predictionType + "&page_number=";
+  Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + predictionType + Statements.sortType + "&page_number=";
 
   Statements.currentPage = 1;
   loadAdverts(Statements.requestAdress+Statements.currentPage);
 });
+
+$(".sort-area-asc").click(function(){
+  Statements.sortType = "&sort_by=area&sort_direction=-1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+$(".sort-area-desc").click(function(){
+  Statements.sortType = "&sort_by=area&sort_direction=1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+
+$(".sort-diff-asc").click(function(){
+  Statements.sortType = "&sort_by=price_diff&sort_direction=-1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+$(".sort-diff-desc").click(function(){
+  Statements.sortType = "&sort_by=price_diff&sort_direction=1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+
+$(".sort-actual-asc").click(function(){
+  Statements.sortType = "&sort_by=actual_price&sort_direction=-1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+$(".sort-actual-desc").click(function(){
+  Statements.sortType = "&sort_by=actual_price&sort_direction=1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+
+$(".sort-predicted-asc").click(function(){
+  Statements.sortType = "&sort_by=predicted_price&sort_direction=-1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+$(".sort-predicted-desc").click(function(){
+  Statements.sortType = "&sort_by=predicted_price&sort_direction=1";
+  $(".mdi").removeClass("mdi-black");
+  $(this).addClass("mdi-black");
+  $(".filter-button").trigger("click");
+});
+
 
 
 function loadAdverts(requestAdress){
@@ -71,6 +125,7 @@ function loadAdverts(requestAdress){
   .done(function(data){
     console.log("request port "+ Statements.requestPort);
     console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
+    console.log("sort type is "+ Statements.sortType);
     $(".results-block").empty();
     for (var i = 0; i < data.results.length; i++) {
       $(".results-block").append(createAdvertFrame(data.results[i].url, data.results[i].preview_url, data.results[i].city, data.results[i].actual_price, data.results[i].predicted_price, data.results[i].price_diff, data.results[i].has_garden, data.results[i].has_garage, data.results[i].house_type, data.results[i].rooms_count, data.results[i].bedrooms_count, data.results[i].description, data.results[i].area, data.results[i].post_code));
@@ -150,8 +205,6 @@ function loadCityList(){
       citiesArray.push(capitalizeFirstLetter(data[i]));
     }
     console.log("city list loaded");
-
-
     $( ".city-field" ).autocomplete({
       source: citiesArray,
       minLength: 2,
@@ -159,7 +212,6 @@ function loadCityList(){
         $('.filtered-cities-list').append( "<li>" + ui.item.value + "<i class='mdi mdi-close'></i></li>" );
         $('.filtered-cities-list li i').unbind();
         $('.filtered-cities-list li i').on('click', function(){
-
           citiesArray.push($(this).parent()[0].innerText);
           $(this).parent().remove();
           citiesArray.sort();
@@ -171,12 +223,9 @@ function loadCityList(){
           $(this).removeClass("background-red", 350);
         });
         return false;
-
       },
       delay: 150
     });
-
-
   })
   .fail(function(){
     console.log("city list load failed");
@@ -202,47 +251,39 @@ function createPaginator(currentPage, totalPages){
     $(".paginator ul").append("<li class='next-page'>&#8250</li>");
     $(".paginator ul").append("<li  class='last-page'>&raquo</li>");
   }
-
-
   bindEventsToPaginator();
 }
 
 function bindEventsToPaginator(){
   $(".first-page").on("click", function(){
     Statements.currentPage = 1;
-
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".last-page").on("click", function(){
     Statements.currentPage = Statements.totalPages;
-
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".prev-page").on("click", function(){
     Statements.currentPage--;
-
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".next-page").on("click", function(){
     Statements.currentPage++;
-
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".prev-two-pages").on("click", function(){
     Statements.currentPage--;
     Statements.currentPage--;
-
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
   $(".next-two-pages").on("click", function(){
     Statements.currentPage++;
     Statements.currentPage++;
-
     createPaginator(Statements.currentPage, Statements.totalPages);
     loadAdverts(Statements.requestAdress + Statements.currentPage);
   });
@@ -253,10 +294,7 @@ function bindEventsToPaginator(){
     if ($(document).scrollTop() > offset) {
       $(document).scrollTop(offset);
     }
-
-
   })
-
 }
 
 function cutDescription(string){

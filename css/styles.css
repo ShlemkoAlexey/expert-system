@@ -203,31 +203,38 @@ input[name="inc-exc-radio"]{
   margin-top: 10px;
 }
 
-
 .sort-table{
-  width: 100%;
+  padding: 10px 0;
   border-top: 1px solid #e6e6e6;
+}
+.sort-table table{
+  width: 100%;
+
   padding-top: 20px;
 }
-.sort-table tr{
+.sort-table table tr{
 
 }
-.sort-table tr td{
-  width: 20%;
+.sort-table table tr td:first-child{
+  width: 30%;
+  text-align: left;
+}
+.sort-table table tr td{
+  width: auto;
   font-size: 125%;
   font-weight: bold;
   color: #DCB386;
   text-align: center;
 }
-.sort-table tr td .mdi{
+.sort-table table tr td .mdi{
   font-weight: bold;
   font-size: 150%;
   position: relative;
   top: 3px;
   cursor: pointer;
 }
-.sort-table tr td .mdi:hover{
-  color: #784D1D;
+.sort-table table tr td .mdi:hover{
+  color: black;
 }
 
 
@@ -396,4 +403,8 @@ input[name="inc-exc-radio"]{
   position: relative;
   top: 3px;
   margin-left: 5px;
+}
+
+.mdi.mdi-black{
+  color: black;
 }
