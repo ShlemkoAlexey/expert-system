@@ -59,7 +59,7 @@ $(".filter-button").click(function(){
   minAreaOption = "&min_area="+$(".area-slider").slider("values", 0);
   maxAreaOption = "&max_area="+$(".area-slider").slider("values", 1);
 
-  Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter? "+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + predictionType + Statements.sortType + "&page_number=";
+  Statements.requestAdress = "http://178.62.229.113:"+Statements.requestPort+"/filter?"+ cityList + filterOption + typeFilterOption +minPriceOption + maxPriceOption + minAreaOption + maxAreaOption + predictionType + Statements.sortType + "&page_number=";
 
   Statements.sortType = "";
   Statements.currentPage = 1;
@@ -126,7 +126,7 @@ function loadAdverts(requestAdress){
   .done(function(data){
     console.log("request port "+ Statements.requestPort);
     console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
-  
+
     $(".results-block").empty();
     for (var i = 0; i < data.results.length; i++) {
       $(".results-block").append(createAdvertFrame(data.results[i].url, data.results[i].preview_url, data.results[i].city, data.results[i].actual_price, data.results[i].predicted_price, data.results[i].price_diff, data.results[i].has_garden, data.results[i].has_garage, data.results[i].house_type, data.results[i].rooms_count, data.results[i].bedrooms_count, data.results[i].description, data.results[i].area, data.results[i].post_code));
@@ -305,7 +305,7 @@ function cutDescription(string){
 function getCityListFromUL(){
   var string = '';
   for (var i = 0; i < $('.filtered-cities-list li').length; i++) {
-    string = string + $('.filtered-cities-list li')[i].innerText + ',';
+    string = string + ($('.filtered-cities-list li')[i].innerText||$('.filtered-cities-list li')[i].textContent) + ',';  //fix of innerText problem in firefox
   }
   return string.slice(0, -1);
 }
