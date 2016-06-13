@@ -7,7 +7,7 @@ var Statements = {
   "requestPort": 80,
   "sortType": ""
 }
-var defaultAdress = 'http://178.62.229.113:'+Statements.requestPort+'/filter?city_filter=muhosransk&city_mode=0&page_number=';
+var defaultAdress = 'http://178.62.229.113:'+Statements.requestPort+'/filter?city_filter=muhosransk&city_mode=0&district_model=1&page_number=';
 
 $(document).ready(function(){
   loadCityList();
@@ -15,6 +15,7 @@ $(document).ready(function(){
   Statements.requestAdress = defaultAdress;
   createPaginator(Statements.currentPage, Statements.totalPages);
   createSliders();
+
 });
 
 $(".filter-button").click(function(){
@@ -124,7 +125,7 @@ function loadAdverts(requestAdress){
   $('.global-preloader').show();
   $.getJSON(requestAdress)
   .done(function(data){
-    console.log("request port "+ Statements.requestPort);
+
     console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
 
     $(".results-block").empty();
@@ -134,6 +135,7 @@ function loadAdverts(requestAdress){
     Statements.totalPages = data.pages_count;
     createPaginator(Statements.currentPage, Statements.totalPages);
     $('.result-prices p').tooltip();
+
 
     if ($(".results-block")[0].childElementCount == 0) {
       console.log("No results found for this parameters");
@@ -319,6 +321,7 @@ function removeValueFromArray(array, value){
 };
 
 function createSliders(){
+  $('.select-table tr td label .mdi-help-circle').tooltip();
   $.getJSON('http://178.62.229.113:'+Statements.requestPort+'/filter_limits')
   .done(function(data){
     $(".price-slider").slider({

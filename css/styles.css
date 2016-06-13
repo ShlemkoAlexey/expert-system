@@ -408,3 +408,9 @@ input[name="inc-exc-radio"]{
 .mdi.mdi-black{
   color: black;
 }
+
+.select-table tr td label .mdi-help-circle{
+  font-size: 120%;
+  position: relative;
+  top: 1px;
+}

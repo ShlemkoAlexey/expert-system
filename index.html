@@ -63,7 +63,9 @@
         </tr>
         <tr>
           <td>
-            <label for="prediction-type-select">Prediction type:</label>
+            <label for="prediction-type-select">Prediction type<i class="mdi mdi-help-circle"  data-toggle="tooltip" data-placement="right" title="Global model uses all available data to calculate predicted prices.
+District model uses only data for properties in the same location as target property.
+Predictions by District model should be closer to reality but it may miss some options if there is not enough data about comparable properties in that location."></i>:</label>
           </td>
           <td>
             <select name="prediction-type-select"class="prediction-type-select">
