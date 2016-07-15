@@ -15,7 +15,6 @@ $(document).ready(function(){
   Statements.requestAdress = defaultAdress;
   createPaginator(Statements.currentPage, Statements.totalPages);
   createSliders();
-
 });
 
 $(".filter-button").click(function(){
@@ -65,11 +64,12 @@ $(".filter-button").click(function(){
   Statements.sortType = "";
   Statements.currentPage = 1;
   loadAdverts(Statements.requestAdress+Statements.currentPage);
+
 });
 
 $(".sort-area-asc").click(function(){
   Statements.sortType = "&sort_by=area&sort_direction=-1";
-$(".filter-button").trigger("click");
+  $(".filter-button").trigger("click");
   $(this).addClass("mdi-black");
 
 });
@@ -82,13 +82,13 @@ $(".sort-area-desc").click(function(){
 
 $(".sort-diff-asc").click(function(){
   Statements.sortType = "&sort_by=price_diff&sort_direction=-1";
-$(".filter-button").trigger("click");
+  $(".filter-button").trigger("click");
   $(this).addClass("mdi-black");
 
 });
 $(".sort-diff-desc").click(function(){
   Statements.sortType = "&sort_by=price_diff&sort_direction=1";
-$(".filter-button").trigger("click");
+  $(".filter-button").trigger("click");
   $(this).addClass("mdi-black");
 
 });
@@ -125,7 +125,6 @@ function loadAdverts(requestAdress){
   $('.global-preloader').show();
   $.getJSON(requestAdress)
   .done(function(data){
-
     console.log("adverts data loaded from "+Statements.requestAdress + Statements.currentPage);
 
     $(".results-block").empty();
@@ -368,3 +367,34 @@ function refreshSliderValues(){
   $(".area-min").html($(".area-slider").slider("values", 0));
   $(".area-max").html($(".area-slider").slider("values", 1));
 }
+/*cookies*/
+
+/*
+function setCookies(){
+  Cookies.set('cityList', getCityListFromUL());
+  Cookies.set('inccludeExcludeFilter', $("input:radio[name ='inc-exc-radio']:checked").val());
+  Cookies.set('houseTypeFilter', $(".house-type-select").val());
+  Cookies.set('predictionTypeFilter', $('.prediction-type-select').val());
+  Cookies.set('minPrice', +$(".price-slider").slider("values", 0));
+  Cookies.set('maxPrice', +$(".price-slider").slider("values", 1));
+  Cookies.set('minArea', +$(".area-slider").slider("values", 0));
+  Cookies.set('maxArea', +$(".area-slider").slider("values", 1));
+  console.log(Cookies.get());
+}
+function loadCookies(){
+  if (Cookies.get('predictionTypeFilter') == "District model") {
+
+  }else if (Cookies.get('predictionTypeFilter') == "Global model") {
+
+  }
+  if (typeof +Cookies.get('minPrice') == 'number') {
+    $(".price-slider").slider("values", 0, Cookies.get('minPrice'));
+  }
+  if (typeof +Cookies.get('maxPrice') == 'number') {
+    $(".price-slider").slider("values", 1, Cookies.get('maxPrice'));
+  }
+
+  $(".area-slider").slider("values", 0, Cookies.get('minArea'));
+  $(".area-slider").slider("values", 1, Cookies.get('maxArea'));
+}
+*/

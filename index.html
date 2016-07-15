@@ -7,6 +7,7 @@
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/map.css">
   <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
@@ -15,121 +16,137 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
+
+
 </head>
 <body>
-<div class="global-preloader">
-  <div>
-    <img src="src/preloader.gif" alt="preloader">
+
+  <div class="global-preloader">
+    <div>
+      <img src="src/preloader.gif" alt="preloader">
+    </div>
   </div>
-</div>
-<div class="header-block">
-  <a href="index.html">Project Estate</a>
-</div>
-<div class="container">
-  <div class="filters-block">
-    <div class="row">
-      <div class="col-xs-8">
-        <input type="text" class="form-control city-field" placeholder="Enter city name...">
+  <div class="header-block">
+    <a href="index.html">Project Estate</a>
+  </div>
+  <div class="container">
+    <div class="filters-block">
       <div class="row">
-        <div class="col-xs-2">
-          <label>
-            <input type="radio" name="inc-exc-radio" value="include" checked>Include
-          </label>
-          <label>
-            <input type="radio" name="inc-exc-radio" value="exclude">Exclude
-          </label>
-        </div>
-        <div class="col-xs-10">
-          <ul class="filtered-cities-list">
+        <div class="col-xs-8">
+          <input type="text" class="form-control city-field" placeholder="Enter city name...">
+          <div class="row">
+            <div class="col-xs-2">
+              <label>
+                <input type="radio" name="inc-exc-radio" value="include" checked>Include
+              </label>
+              <label>
+                <input type="radio" name="inc-exc-radio" value="exclude">Exclude
+              </label>
+            </div>
+            <div class="col-xs-10">
+              <ul class="filtered-cities-list">
 
-          </ul>
+              </ul>
+            </div>
+          </div>
         </div>
+        <div class="col-xs-4">
+          <button class="btn btn-block filter-button"><i class="mdi mdi-magnify"></i>Filter</button>
+          <table class="select-table">
+            <tr>
+              <td>
+                <label for="house-type-select">House type:</label>
+              </td>
+              <td>
+                <select name="house-type-select" class="house-type-select">
+                  <option>All</option>
+                  <option>Apartment</option>
+                  <option>House</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="prediction-type-select">Prediction type<i class="mdi mdi-help-circle"  data-toggle="tooltip" data-placement="right" title="Global model uses all available data to calculate predicted prices.
+                  District model uses only data for properties in the same location as target property.
+                  Predictions by District model should be closer to reality but it may miss some options if there is not enough data about comparable properties in that location."></i>:</label>
+                </td>
+                <td>
+                  <select name="prediction-type-select"class="prediction-type-select">
+                    <option>District model</option>
+                    <option>Global model</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <div class="price-slider"></div>
+            <p>Price from <span class="price-min"></span> € to <span class="price-max"></span> €</p>
+            <div class="area-slider"></div>
+            <p>Area from <span class="area-min"></span> m<sup>3</sup> to <span class="area-max"></span> m<sup>3</sup></p>
+          </div>
+        </div>
+
+         <div class="row">
+          <div class="col-xs-6" style="padding-right:0;">
+            <button class="btn btn-block map-switch-button map-switch-button-list" style="border-top-right-radius:0; border-bottom-right-radius:0;">LIST</button>
+          </div>
+          <div class="col-xs-6" style="padding-left:0;">
+            <button class="btn btn-block map-switch-button map-switch-button-map" style="border-top-left-radius:0; border-bottom-left-radius:0;">MAP</button>
+          </div>
+        </div>
+
+        <div class="sort-table">
+
+
+          <table>
+            <tr>
+              <td>
+                <i class="mdi mdi-sort-variant" style="cursor: default; color: inherit;"></i>Sort by:
+              </td>
+              <td>
+                <i class="mdi mdi-chevron-down sort-area-asc"></i>Area size<i class="mdi mdi-chevron-up sort-area-desc"></i>
+              </td>
+              <td>
+                <i class="mdi mdi-chevron-down sort-diff-asc"></i>Price difference<i class="mdi mdi-chevron-up sort-diff-desc"></i>
+              </td>
+              <td>
+                <i class="mdi mdi-chevron-down sort-actual-asc"></i>Actual Price<i class="mdi mdi-chevron-up sort-actual-desc"></i>
+              </td>
+              <td>
+                <i class="mdi mdi-chevron-down sort-predicted-asc"></i>Predicted price<i class="mdi mdi-chevron-up sort-predicted-desc"></i>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+
       </div>
-    </div>
-    <div class="col-xs-4">
-      <button class="btn btn-block filter-button"><i class="mdi mdi-magnify"></i>Filter</button>
-      <table class="select-table">
-        <tr>
-          <td>
-            <label for="house-type-select">House type:</label>
-          </td>
-          <td>
-            <select name="house-type-select" class="house-type-select">
-              <option>All</option>
-              <option>Apartment</option>
-              <option>House</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label for="prediction-type-select">Prediction type<i class="mdi mdi-help-circle"  data-toggle="tooltip" data-placement="right" title="Global model uses all available data to calculate predicted prices.
-District model uses only data for properties in the same location as target property.
-Predictions by District model should be closer to reality but it may miss some options if there is not enough data about comparable properties in that location."></i>:</label>
-          </td>
-          <td>
-            <select name="prediction-type-select"class="prediction-type-select">
-              <option>District model</option>
-              <option>Global model</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-      <div class="price-slider"></div>
-      <p>Price from <span class="price-min"></span> € to <span class="price-max"></span> €</p>
-      <div class="area-slider"></div>
-      <p>Area from <span class="area-min"></span> m<sup>3</sup> to <span class="area-max"></span> m<sup>3</sup></p>
-    </div>
-  </div>
-  <div class="sort-table">
+      <div class="paginator">
+        <ul></ul>
+      </div>
 
 
-  <table>
-    <tr>
-      <td>
-          <i class="mdi mdi-sort-variant" style="cursor: default; color: inherit;"></i>Sort by:
-      </td>
-      <td>
-        <i class="mdi mdi-chevron-down sort-area-asc"></i>Area size<i class="mdi mdi-chevron-up sort-area-desc"></i>
-      </td>
-      <td>
-        <i class="mdi mdi-chevron-down sort-diff-asc"></i>Price difference<i class="mdi mdi-chevron-up sort-diff-desc"></i>
-      </td>
-      <td>
-        <i class="mdi mdi-chevron-down sort-actual-asc"></i>Actual Price<i class="mdi mdi-chevron-up sort-actual-desc"></i>
-      </td>
-      <td>
-        <i class="mdi mdi-chevron-down sort-predicted-asc"></i>Predicted price<i class="mdi mdi-chevron-up sort-predicted-desc"></i>
-      </td>
-    </tr>
-  </table>
-
-  </div>
-
-</div>
-<div class="paginator">
-  <ul></ul>
-</div>
-<div class="results-block">
-  <!-- <div class="result">
-  <div class="row">
-  <div class="col-xs-2">
-  <a href="http://www.funda.nl/" target="_blank"><img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" class="result-image"/></a>
-</div>
-<div class="col-xs-10">
-<a class="result-city-name" href="http://www.funda.nl/" target="_blank">Amsterdam</p></a>
-<div class="row">
-<div class="col-xs-8">
-<div class="row">
-<div class="col-xs-5 result-data">
-<p>
-Type: House
-</p>
-<p>
-Rooms: 4 (3)
-</p>
-<p>
-Area: 120m<sup>3</sup>
+      <div class="results-block">
+        <!--
+         <div class="result">
+        <div class="row">
+        <div class="col-xs-2">
+        <a href="http://www.funda.nl/" target="_blank"><img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" class="result-image"/></a>
+      </div>
+      <div class="col-xs-10">
+      <a class="result-city-name" href="http://www.funda.nl/" target="_blank">Amsterdam</p></a>
+      <div class="row">
+      <div class="col-xs-8">
+      <div class="row">
+      <div class="col-xs-5 result-data">
+      <p>
+      Type: House
+    </p>
+    <p>
+    Rooms: 4 (3)
+  </p>
+  <p>
+  Area: 120m<sup>3</sup>
 </p>
 </div>
 <div class="col-xs-7 result-options">
@@ -162,7 +179,7 @@ predicted:<span>150000€</span>
 </div>
 </div>
 </div>
-</div> -->
+</div>-->
 </div>
 
 
@@ -179,6 +196,7 @@ predicted:<span>150000€</span>
 
 
 </div>
+<div id="map"></div>
 <div class="footer-block">
   <p>
     <b>Back-end: Illia Bershadskyi</b>
@@ -196,5 +214,10 @@ predicted:<span>150000€</span>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="js/js.cookie.js"></script>
 <script src="js/scripts.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBklFTAeUj8Nal2yTbVsfqG3hGOrMPEkDc&callback=initMap"></script>
+<script src="js/map.js"></script>
+
 </body>
+</html>

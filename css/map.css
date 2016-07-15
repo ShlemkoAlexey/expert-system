@@ -1,0 +1,38 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+#map {
+  height: 80%;
+  display: none;
+  margin:20px;
+  border: 1px solid #b88b58;
+  border-top: 4px solid #b88b58;
+
+}
+
+
+
+.map-switch-button{
+  background: #DCB386;
+  color: white;
+  font-weight: bold;
+
+}
+.map-switch-button:hover{
+  background: #b88b58;
+  color: white;
+}
+.map-switch-button:active{
+  background: #784D1D;
+  outline: none;
+  color: white;
+}
+.map-switch-button:focus{
+  outline: none;
+  color: white;
+}
