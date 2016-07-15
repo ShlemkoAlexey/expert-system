@@ -9,7 +9,7 @@ html, body {
 #map {
   height: 80%;
   display: none;
-  margin:20px;
+  margin:20px 10%;
   border: 1px solid #b88b58;
   border-top: 4px solid #b88b58;
 
