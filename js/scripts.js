@@ -15,6 +15,10 @@ $(document).ready(function(){
   Statements.requestAdress = defaultAdress;
   createPaginator(Statements.currentPage, Statements.totalPages);
   createSliders();
+  /*test*/
+
+  // loadMarkers('http://178.62.229.113/filter?&city_filter=De%20kwakel&city_mode=1&price_start=35000&price_end=600000&min_area=23&max_area=480&district_model=1&page_number=-1');
+  /*test*/
 });
 
 $(".filter-button").click(function(){
@@ -64,7 +68,7 @@ $(".filter-button").click(function(){
   Statements.sortType = "";
   Statements.currentPage = 1;
   loadAdverts(Statements.requestAdress+Statements.currentPage);
-
+  
 });
 
 $(".sort-area-asc").click(function(){
