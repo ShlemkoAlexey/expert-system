@@ -14,8 +14,30 @@ html, body {
   border-top: 4px solid #b88b58;
 
 }
-
-
+#map-preloader {
+  height: 80%;
+  display: none;
+  margin:20px 10%;
+  border: 1px solid #b88b58;
+  border-top: 4px solid #b88b58;
+  background: white;
+  position: relative;
+}
+#map-preloader div{
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -32px 0 0 -128px;
+}
+#map-preloader div img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: none;
+}
 
 .map-switch-button{
   background: #DCB386;

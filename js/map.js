@@ -55,7 +55,8 @@ function initMap() {
 
 
 function loadMarkers(adress){
-  $("#map").css("opacity","0");
+  $("#map").css("display","none");
+  $("#map-preloader").css("display", "block");
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -80,11 +81,15 @@ function loadMarkers(adress){
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
     }
-  $("#map").css("opacity","1");
+    $("#map").css("display","block");
+    $("#map-preloader").css("display", "none");
+    google.maps.event.trigger(map, 'resize');
+
+
   })
   .fail(function(){
     console.log("markers load failed!");
-    $("#map").css("opacity","1");
+
   });
 
 }
