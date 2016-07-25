@@ -67,9 +67,9 @@ function loadMarkers(adress){
 
       var predictedPriceOnInformWindow;
       if (data.results[i].price_diff <= 0) {
-        predictedPriceOnInformWindow = '<div style="color:green;"><i class="mdi mdi-arrow-down-bold"></i> '+(data.results[i].price_diff)*(-1)+'</div>';
+        predictedPriceOnInformWindow = '<div style="color:green;"><i class="mdi mdi-arrow-down-bold"></i> '+numeral((data.results[i].price_diff)*(-1)).format('0,0')+' €</div>';
       }else{
-        predictedPriceOnInformWindow = '<div style="color:red;"><i class="mdi mdi-arrow-up-bold"></i> '+data.results[i].price_diff+'</div>';
+        predictedPriceOnInformWindow = '<div style="color:red;"><i class="mdi mdi-arrow-up-bold"></i> '+numeral(data.results[i].price_diff).format('0,0')+' €</div>';
       }
 
       var marker = new google.maps.Marker({
@@ -81,7 +81,7 @@ function loadMarkers(adress){
         icon: new google.maps.MarkerImage(markerImage),
         info: new google.maps.InfoWindow({content: '<img src="'+data.results[i].preview_url+'" width="180px">'+
         '<b><div><a href="'+data.results[i].url+' target="_blank"">'+capitalizeFirstLetter(data.results[i].district)+' '+data.results[i].post_code+'</a></div>'+
-        '<div>Price: '+data.results[i].actual_price+'</div>'+
+        '<div>Price: '+numeral(data.results[i].actual_price).format('0,0')+' €</div>'+
         predictedPriceOnInformWindow +
         '</b>'
       })
