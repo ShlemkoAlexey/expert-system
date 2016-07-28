@@ -40,7 +40,7 @@ $(".filter-button").click(function(){
     }else{
       filterOption = "&city_mode=0";
     }
-  }else {
+  }else{
     cityList = "&city_filter=muhosransk";
     filterOption = "&city_mode=0";
   }
@@ -127,9 +127,7 @@ $(".sort-predicted-desc").click(function(){
 
 
 function loadAdverts(requestAdress){
-  if ($("#map").css("display") == "none") {
     $('.global-preloader').show();
-  } 
 
   $.getJSON(requestAdress)
   .done(function(data){

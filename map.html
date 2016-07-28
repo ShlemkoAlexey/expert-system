@@ -2,18 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>map</title>
+  <title>map view</title>
   <link rel="shortcut icon" href="src/icon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/map.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+  <script src="js/analytics.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-  <button id="on">ON</button>
-  <button id="off">OFF</button>
-    <div id="map"></div>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBklFTAeUj8Nal2yTbVsfqG3hGOrMPEkDc&callback=initMap"></script>
-  <script src="js/map.js"></script>
-</body>
-</html>
+  <div class="header-block">
+    <a href="index.html">Project Estate</a>
+  </div>
+  <div class="container">
+    <div class="filters-block">
+      <div class="row">
+        <div class="col-xs-8">
+          <input type="text" class="form-control city-field" placeholder="Enter city name...">
+          <div class="row">
+            <div class="col-xs-2">
+              <label>
+                <input type="radio" name="inc-exc-radio" value="include" checked>Include
+              </label>
+              <label>
+                <input type="radio" name="inc-exc-radio" value="exclude">Exclude
+              </label>
+            </div>
+            <div class="col-xs-10">
+              <ul class="filtered-cities-list">
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <button class="btn btn-block filter-button"><i class="mdi mdi-magnify"></i>Filter</button>
+          <table class="select-table">
+            <tr>
+              <td>
+                <label for="house-type-select">House type:</label>
+              </td>
+              <td>
+                <select name="house-type-select" class="house-type-select">
+                  <option>All</option>
+                  <option>Apartment</option>
+                  <option>House</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="prediction-type-select">Prediction type<i class="mdi mdi-help-circle"  data-toggle="tooltip" data-placement="right" title="Global model uses all available data to calculate predicted prices.
+                  District model uses only data for properties in the same location as target property.
+                  Predictions by District model should be closer to reality but it may miss some options if there is not enough data about comparable properties in that location."></i>:</label>
+                </td>
+                <td>
+                  <select name="prediction-type-select"class="prediction-type-select">
+                    <option>District model</option>
+                    <option>Global model</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <div class="price-slider"></div>
+            <p>Price from <span class="price-min"></span> € to <span class="price-max"></span> €</p>
+            <div class="area-slider"></div>
+            <p>Area from <span class="area-min"></span> m<sup>3</sup> to <span class="area-max"></span> m<sup>3</sup></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map">
+    </div>
+    <div class="footer-block">
+      <p>
+        <b>Back-end: Illia Bershadskyi</b>
+      </p>
+      <p>
+        <b>Front-end: Alexey Shlemko</b>
+      </p>
+      <p>
+        <b>© 2016 All rights reserved</b>
+      </p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.1/numeral.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBklFTAeUj8Nal2yTbVsfqG3hGOrMPEkDc&callback=initMap"></script>
+    <script src="js/map.js"></script>
+  </body>
+  </html>
