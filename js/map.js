@@ -15,6 +15,10 @@ var requestAdress = {
   "minArea": "",
   "maxArea": "",
   "shortData": "&short_data=1",
+  "minLat": "",
+  "maxLat": "",
+  "minLng": "",
+  "maxLng": "",
   "setAreaAndPrice": function(){
     //set price filters
     this.minPrice = "&price_start="+$(".price-slider").slider("values", 0);
@@ -22,7 +26,12 @@ var requestAdress = {
     //set area filters
     this.minArea = "&min_area="+$(".area-slider").slider("values", 0);
     this.maxArea = "&max_area="+$(".area-slider").slider("values", 1);
-
+  },
+  "setMapBounds": function(object){
+    this.minLat = "&min_lat="+object.f.f;
+    this.maxLat = "&max_lat="+object.f.b;
+    this.minLng = "&min_lng="+object.b.b;
+    this.maxLng = "&max_lng="+object.b.f;
   },
   "set": function(){
     //set filter by cities and include/exclude setting
@@ -55,7 +64,7 @@ var requestAdress = {
 
   },
   "get": function(){
-    return "http://178.62.229.113/filter?"+this.cityFilter+this.cityMode+this.typeFilter+this.districtModel+this.predictionType+this.minArea+this.maxArea+this.minPrice+this.maxPrice+this.shortData;
+    return "http://178.62.229.113/filter?"+this.cityFilter+this.cityMode+this.typeFilter+this.districtModel+this.predictionType+this.minArea+this.maxArea+this.minPrice+this.maxPrice+this.minLat+this.maxLat+this.minLng+this.maxLng+this.shortData;
   }
 }
 
@@ -65,6 +74,7 @@ $(document).ready(function(){
   loadMarkers(requestAdress.get());
   requestAdress.set();
   console.log(requestAdress.get());
+
 });
 
 $(".filter-button").click(function(){
@@ -76,11 +86,11 @@ $(".filter-button").click(function(){
 
 
 function initMap() {
-  var myLatLng = {lat: 54.5, lng: 1};
+  var myLatLng = {lat: 52.238, lng: 5.000};
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: myLatLng,
-    zoom: 7
+    zoom: 9
   });
 }
 
@@ -126,15 +136,25 @@ function loadMarkers(adress){
       marker.info.open(map, this);
     });
     markers.push(marker);
-    //AutoCenter();
   }
   console.log("markers loaded");
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }
-  google.maps.event.clearListeners(map, 'idle');
-  map.addListener('idle', function() {
-    console.log("idle event!");
+  google.maps.event.clearListeners(map, 'dragend');
+  map.addListener('dragend', function() {
+    //console.log("dragend event!");
+    requestAdress.setMapBounds(map.getBounds());
+    requestAdress.set();
+    requestAdress.setAreaAndPrice();
+    loadMarkers(requestAdress.get());
+  });
+  google.maps.event.clearListeners(map, 'zoom_changed');
+  map.addListener('zoom_changed', function() {
+    //console.log("dragend event!");
+    requestAdress.set();
+    requestAdress.setAreaAndPrice();
+    requestAdress.setMapBounds(map.getBounds());
     loadMarkers(requestAdress.get());
   });
   //  google.maps.event.trigger(map, 'resize');
