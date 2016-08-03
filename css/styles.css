@@ -86,7 +86,9 @@ body{
   padding: 10px 40px;
   display: inline-block;
   transition: .3s;
-  border-right: 2px solid #b88b58;
+  background: white;
+  border: 1px solid white;
+  /*border-right: 2px solid #b88b58;*/
 }
 .navigation-bar li:last-of-type a{
   border: none;
@@ -97,6 +99,7 @@ body{
   color: #2b1100;
   background: lightgray;
   transition: .3s;
+  border: 1px solid #b88b58;
 }
 
 /*NAV BAR END*/
