@@ -67,18 +67,18 @@ body{
   bottom: 10px;
 
 }
-
+/*NAV BAR*/
 .navigation-bar{
   list-style: none;
   padding: 0;
   margin: 0;
   background: white;
   display: inline-block;
-  border-top: 4px solid #b88b58;
   margin-top: 20px;
 }
 .navigation-bar li{
   display: inline-block;
+  margin-left: -3px;
 }
 .navigation-bar li a{
   font-size: 200%;
@@ -86,13 +86,20 @@ body{
   padding: 10px 40px;
   display: inline-block;
   transition: .3s;
+  border-right: 2px solid #b88b58;
 }
-.navigation-bar li a:hover{
+.navigation-bar li:last-of-type a{
+  border: none;
+}
+.navigation-bar li a:hover,
+.navigation-bar li a.active{
   text-decoration: none;
-  color: black;
+  color: #2b1100;
   background: lightgray;
   transition: .3s;
 }
+
+/*NAV BAR END*/
 
 
 .filters-block{
