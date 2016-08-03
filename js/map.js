@@ -134,7 +134,9 @@ function loadMarkers(adress){
     google.maps.event.addListener(marker, 'click', function() {
       marker.info.setContent(this.info.content);
       marker.info.open(map, this);
+      console.log("marker event!!!");
     });
+
     markers.push(marker);
   }
   console.log("markers loaded");
@@ -156,6 +158,9 @@ function loadMarkers(adress){
     requestAdress.setAreaAndPrice();
     requestAdress.setMapBounds(map.getBounds());
     loadMarkers(requestAdress.get());
+  });
+  map.addListener('click', function(){
+    marker.info.close(map, this);
   });
   //  google.maps.event.trigger(map, 'resize');
 })
