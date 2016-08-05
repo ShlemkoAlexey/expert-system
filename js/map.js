@@ -4,6 +4,7 @@ google map api key - AIzaSyBklFTAeUj8Nal2yTbVsfqG3hGOrMPEkDc
 var map;
 var markers = [];
 var citiesArray = [];
+var activeInfoWindow;
 var requestAdress = {
   "cityFilter": "",
   "cityMode": "",
@@ -92,6 +93,7 @@ function initMap() {
     center: myLatLng,
     zoom: 9
   });
+  activeInfoWindow = new google.maps.InfoWindow;
 }
 
 
@@ -131,8 +133,11 @@ function loadMarkers(adress){
       })
     });
     google.maps.event.addListener(marker, 'click', function() {
-      marker.info.setContent(this.info.content);
-      marker.info.open(map, this);
+      //marker.info.setContent(this.info.content);
+      //marker.info.open();
+      activeInfoWindow.close();
+      activeInfoWindow = this.info;
+      this.info.open(map, this);
       console.log("marker event!!!");
     });
     markers.push(marker);
@@ -161,6 +166,8 @@ function loadMarkers(adress){
     marker.info.close(map, this);
   });
   //  google.maps.event.trigger(map, 'resize');
+
+
 })
 .fail(function(){
   console.log("markers load failed!");
