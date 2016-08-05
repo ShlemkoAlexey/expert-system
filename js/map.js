@@ -96,6 +96,7 @@ function initMap() {
 
 
 function loadMarkers(adress){
+  console.log(adress);
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -106,10 +107,8 @@ function loadMarkers(adress){
       var markerImage;
       if(data.results[i].price_diff <= 0){
         markerImage = "src/house-green.png";
-        //markerImage = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
       }else{
         markerImage = "src/house-red.png";
-        //markerImage = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
       }
       var predictedPriceOnInformWindow;
       if (data.results[i].price_diff <= 0) {
@@ -125,7 +124,7 @@ function loadMarkers(adress){
         title: capitalizeFirstLetter(data.results[i].district),
         icon: new google.maps.MarkerImage(markerImage),
         info: new google.maps.InfoWindow({content: '<img src="'+data.results[i].preview_url+'" width="180px">'+
-        '<b><div><a href="'+data.results[i].url+' target="_blank"">'+capitalizeFirstLetter(data.results[i].district)+' '+data.results[i].post_code+'</a></div>'+
+        '<b><div><a href="'+data.results[i].url+'" target="_blank">'+capitalizeFirstLetter(data.results[i].district)+' '+data.results[i].post_code+'</a></div>'+
         '<div>Price: '+numeral(data.results[i].actual_price).format('0,0')+' €</div>'+
         predictedPriceOnInformWindow +
         '</b>'
@@ -136,7 +135,6 @@ function loadMarkers(adress){
       marker.info.open(map, this);
       console.log("marker event!!!");
     });
-
     markers.push(marker);
   }
   console.log("markers loaded");
