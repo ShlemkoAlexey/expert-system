@@ -2,6 +2,14 @@
 google map api key - AIzaSyBklFTAeUj8Nal2yTbVsfqG3hGOrMPEkDc
 */
 var map;
+var heatmap = {
+  mapFast: "",
+  dataFast: [],
+  mapMed: "",
+  dataMed: [],
+  mapLong: "",
+  dataLong: []
+};
 var markers = [];
 var citiesArray = [];
 var activeInfoWindow;
@@ -103,6 +111,9 @@ function loadMarkers(adress){
     markers[i].setMap(null);
   }
   markers.length = 0; //array clearing, fastest method
+  heatmap.dataFast.length = 0;
+  heatmap.dataMed.length = 0;
+  heatmap.dataLong .length = 0;
   $.getJSON(adress)
   .done(function(data){
     for (var i = 0; i< data.results.length; i++) {
@@ -141,6 +152,16 @@ function loadMarkers(adress){
       console.log("marker event!!!");
     });
     markers.push(marker);
+
+    /*create data for heatmaps*/
+    if (data.results[i].com_time <=20) {
+      heatmap.dataFast.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
+    }else if (data.results[i].com_time <=40) {
+      heatmap.dataMed.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
+    }else {
+      heatmap.dataLong.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
+    }
+    /*create data for heatmaps*/
   }
   console.log("markers loaded");
   for (var i = 0; i < markers.length; i++) {
@@ -165,8 +186,41 @@ function loadMarkers(adress){
   map.addListener('click', function(){
     marker.info.close(map, this);
   });
-  //  google.maps.event.trigger(map, 'resize');
 
+  generateHeatMaps();
+  /*
+  try {
+  heatmap.setMap(null);
+} catch (e) {
+console.log(e);
+}
+heatmap = new google.maps.visualization.HeatmapLayer({
+data: heatmapData,
+dissipating: false,
+radius: 0.02,
+maxIntensity: 0.01,
+gradient: [
+'rgba(0, 0, 0, 0)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)',
+'rgba(0, 255, 0, 1)'
+]
+});
+
+
+
+heatmap.setMap(map);
+*/
 
 })
 .fail(function(){
@@ -174,6 +228,103 @@ function loadMarkers(adress){
 });
 
 }
+
+function generateHeatMaps(){
+  var mapsRadius = 0.005;
+  var mapsMaxIntensity = 0.01;
+  var mapsGreenGradient = [
+    'rgba(0, 0, 0, 0)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 0, 1)'
+  ];
+  var mapsYellowGradient = [
+    'rgba(0, 0, 0, 0)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)'
+  ];
+  var mapsRedGradient = [
+    'rgba(0, 0, 0, 0)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)'
+  ];
+
+  try {
+    heatmap.mapFast.setMap(null);
+  } catch (e) {
+    console.log(e);
+  }
+  try {
+    heatmap.mapMed.setMap(null);
+  } catch (e) {
+    console.log(e);
+  }
+  try {
+    heatmap.mapLong.setMap(null);
+  } catch (e) {
+    console.log(e);
+  }
+  heatmap.mapFast = new google.maps.visualization.HeatmapLayer({
+    data: heatmap.dataFast,
+    dissipating: false,
+    radius: mapsRadius,
+    maxIntensity: mapsMaxIntensity,
+    gradient: mapsGreenGradient
+  });
+  heatmap.mapFast.setMap(map);
+
+  heatmap.mapMed = new google.maps.visualization.HeatmapLayer({
+    data: heatmap.dataMed,
+    dissipating: false,
+    radius: mapsRadius,
+    maxIntensity: mapsMaxIntensity,
+    gradient: mapsYellowGradient
+  });
+  heatmap.mapMed.setMap(map);
+
+  heatmap.mapLong = new google.maps.visualization.HeatmapLayer({
+    data: heatmap.dataLong,
+    dissipating: false,
+    radius: mapsRadius,
+    maxIntensity: mapsMaxIntensity,
+    gradient: mapsRedGradient
+  });
+  heatmap.mapLong.setMap(map);
+
+}
+
 
 
 function AutoCenter() {
