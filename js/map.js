@@ -158,7 +158,7 @@ function loadMarkers(adress){
       heatmap.dataFast.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
     }else if (data.results[i].com_time <=40) {
       heatmap.dataMed.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
-    }else {
+    }else if (data.results[i].com_time <=59 && data.results[i].com_time > 60) {
       heatmap.dataLong.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
     }
     /*create data for heatmaps*/
