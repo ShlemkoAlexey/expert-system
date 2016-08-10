@@ -116,7 +116,7 @@ function loadMarkers(adress){
   heatmap.dataLong .length = 0;
   $.getJSON(adress)
   .done(function(data){
-    for (var i = 0; i< data.results.length||i<100; i++) {
+    for (var i = 0; i< data.results.length&&i<100; i++) {
       var markerImage;
       if(data.results[i].price_diff <= 0){
         markerImage = "src/house-green.png";
