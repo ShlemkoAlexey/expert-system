@@ -116,7 +116,7 @@ function loadMarkers(adress){
   heatmap.dataLong .length = 0;
   $.getJSON(adress)
   .done(function(data){
-    for (var i = 0; i< data.results.length; i++) {
+    for (var i = 0; i< data.results.length||i<100; i++) {
       var markerImage;
       if(data.results[i].price_diff <= 0){
         markerImage = "src/house-green.png";
@@ -158,7 +158,7 @@ function loadMarkers(adress){
       heatmap.dataFast.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
     }else if (data.results[i].com_time <=40) {
       heatmap.dataMed.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
-    }else if (data.results[i].com_time <=59 && data.results[i].com_time > 60) {
+    }else{
       heatmap.dataLong.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
     }
     /*create data for heatmaps*/
@@ -230,7 +230,7 @@ heatmap.setMap(map);
 }
 
 function generateHeatMaps(){
-  var mapsRadius = 0.005;
+  var mapsRadius = 40;
   var mapsMaxIntensity = 0.01;
   var mapsGreenGradient = [
     'rgba(0, 0, 0, 0)',
@@ -298,7 +298,7 @@ function generateHeatMaps(){
   }
   heatmap.mapFast = new google.maps.visualization.HeatmapLayer({
     data: heatmap.dataFast,
-    dissipating: false,
+    dissipating: true,
     radius: mapsRadius,
     maxIntensity: mapsMaxIntensity,
     gradient: mapsGreenGradient
@@ -307,7 +307,7 @@ function generateHeatMaps(){
 
   heatmap.mapMed = new google.maps.visualization.HeatmapLayer({
     data: heatmap.dataMed,
-    dissipating: false,
+    dissipating: true,
     radius: mapsRadius,
     maxIntensity: mapsMaxIntensity,
     gradient: mapsYellowGradient
@@ -316,7 +316,7 @@ function generateHeatMaps(){
 
   heatmap.mapLong = new google.maps.visualization.HeatmapLayer({
     data: heatmap.dataLong,
-    dissipating: false,
+    dissipating: true,
     radius: mapsRadius,
     maxIntensity: mapsMaxIntensity,
     gradient: mapsRedGradient
