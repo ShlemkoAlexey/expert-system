@@ -13,3 +13,13 @@ html, body {
   border: 1px solid #b88b58;
   border-top: 4px solid #b88b58;
 }
+
+#legend{
+  background: white;
+  border: 1px solid #b88b58;
+  padding: 10px;
+  border-left: none;
+}
+#legend b p{
+  text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+}

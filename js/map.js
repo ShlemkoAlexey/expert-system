@@ -102,6 +102,8 @@ function initMap() {
     zoom: 9
   });
   activeInfoWindow = new google.maps.InfoWindow;
+
+  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend'));
 }
 
 
@@ -188,39 +190,7 @@ function loadMarkers(adress){
   });
 
   generateHeatMaps();
-  /*
-  try {
-  heatmap.setMap(null);
-} catch (e) {
-console.log(e);
-}
-heatmap = new google.maps.visualization.HeatmapLayer({
-data: heatmapData,
-dissipating: false,
-radius: 0.02,
-maxIntensity: 0.01,
-gradient: [
-'rgba(0, 0, 0, 0)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)',
-'rgba(0, 255, 0, 1)'
-]
-});
 
-
-
-heatmap.setMap(map);
-*/
 
 })
 .fail(function(){
@@ -440,3 +410,13 @@ function refreshSliderValues(){
   $(".area-min").html($(".area-slider").slider("values", 0));
   $(".area-max").html($(".area-slider").slider("values", 1));
 }
+
+//test 4 cookies
+
+var cookiesLoaded = false;
+$(document).ajaxStop(function () {
+  if (!cookiesLoaded) {
+    cookiesLoaded = true;
+    console.log("COOKIES!");
+  }
+});
