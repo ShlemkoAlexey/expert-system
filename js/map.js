@@ -156,9 +156,9 @@ function loadMarkers(adress){
     markers.push(marker);
 
     /*create data for heatmaps*/
-    if (data.results[i].com_time <=20) {
+    if (data.results[i].com_time <=40) {
       heatmap.dataFast.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
-    }else if (data.results[i].com_time <=40) {
+    }else if (data.results[i].com_time <=70) {
       heatmap.dataMed.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
     }else{
       heatmap.dataLong.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
@@ -410,13 +410,3 @@ function refreshSliderValues(){
   $(".area-min").html($(".area-slider").slider("values", 0));
   $(".area-max").html($(".area-slider").slider("values", 1));
 }
-
-//test 4 cookies
-
-var cookiesLoaded = false;
-$(document).ajaxStop(function () {
-  if (!cookiesLoaded) {
-    cookiesLoaded = true;
-    console.log("COOKIES!");
-  }
-});
