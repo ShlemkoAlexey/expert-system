@@ -220,7 +220,7 @@ function loadCityList(){
         $('.filtered-cities-list').append( "<li>" + ui.item.value + "<i class='mdi mdi-close'></i></li>" );
         $('.filtered-cities-list li i').unbind();
         $('.filtered-cities-list li i').on('click', function(){
-          citiesArray.push($(this).parent()[0].innerText);
+          citiesArray.push($(this).parent()[0].innerText||$(this).parent()[0].textContent);
           $(this).parent().remove();
           citiesArray.sort();
         });
@@ -373,34 +373,3 @@ function refreshSliderValues(){
   $(".area-min").html($(".area-slider").slider("values", 0));
   $(".area-max").html($(".area-slider").slider("values", 1));
 }
-/*cookies*/
-
-/*
-function setCookies(){
-  Cookies.set('cityList', getCityListFromUL());
-  Cookies.set('inccludeExcludeFilter', $("input:radio[name ='inc-exc-radio']:checked").val());
-  Cookies.set('houseTypeFilter', $(".house-type-select").val());
-  Cookies.set('predictionTypeFilter', $('.prediction-type-select').val());
-  Cookies.set('minPrice', +$(".price-slider").slider("values", 0));
-  Cookies.set('maxPrice', +$(".price-slider").slider("values", 1));
-  Cookies.set('minArea', +$(".area-slider").slider("values", 0));
-  Cookies.set('maxArea', +$(".area-slider").slider("values", 1));
-  console.log(Cookies.get());
-}
-function loadCookies(){
-  if (Cookies.get('predictionTypeFilter') == "District model") {
-
-  }else if (Cookies.get('predictionTypeFilter') == "Global model") {
-
-  }
-  if (typeof +Cookies.get('minPrice') == 'number') {
-    $(".price-slider").slider("values", 0, Cookies.get('minPrice'));
-  }
-  if (typeof +Cookies.get('maxPrice') == 'number') {
-    $(".price-slider").slider("values", 1, Cookies.get('maxPrice'));
-  }
-
-  $(".area-slider").slider("values", 0, Cookies.get('minArea'));
-  $(".area-slider").slider("values", 1, Cookies.get('maxArea'));
-}
-*/

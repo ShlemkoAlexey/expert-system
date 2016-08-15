@@ -1,19 +1,13 @@
-var cookiesLoaded = false;
 /*EVENT FOR LOAD COOKIES ONCE AFTER PAGE RELOAD*/
+var cookiesLoaded = false;
 $(document).ajaxStop(function () {
-
   if (!cookiesLoaded) {
     cookiesLoaded = true;
     loadCookiesForFilters();
-    console.log("--------------------------------------------------------------------------------------------------");
-    console.log("COOKIES!");
     console.log(Cookies.get());
-    console.log("--------------------------------------------------------------------------------------------------");
   }
-
 });
 /*EVENT FOR LOAD COOKIES ONCE AFTER PAGE RELOAD*/
-
 
 $(".filter-button").click(function(){
   setCookiesForFilter();
@@ -67,4 +61,41 @@ function loadCookiesForFilters(){
     console.log("house type cookie not loaded");
   }
 
+  //CITY LIST FILTER
+  try {
+    var cityListForLoad = Cookies.get("cityList").split(",");
+    console.log(cityListForLoad);
+    for (var i = 0; i < cityListForLoad.length; i++) {
+      if (cityListForLoad[i].length>0) {
+        $('.filtered-cities-list').append( "<li>" + cityListForLoad[i] + "<i class='mdi mdi-close'></i></li>" );
+        removeValueFromArray(citiesArray, cityListForLoad[i]);
+      }
+    }
+
+    $('.filtered-cities-list li i').unbind();
+    $('.filtered-cities-list li i').on('click', function(){
+      citiesArray.push($(this).parent()[0].innerText||$(this).parent()[0].textContent);
+      $(this).parent().remove();
+      citiesArray.sort();
+    });
+  } catch (e) {
+    console.log("city list cookie not loaded");
+  }
+
+  //PRICE AND AREA FILTERS //////TROUBLE HERE!!!!!!!!!!!!!!!!
+
+  try {
+    console.log([+Cookies.get("priceMin"), +Cookies.get("priceMax")]);
+    console.log("isNAN: " + isNaN(Cookies.get("priceMin")));
+    if (!isNaN(Cookies.get("priceMin"))&&!isNaN(Cookies.get("priceMax"))&&!isNaN(Cookies.get("areaMin"))&&!isNaN(Cookies.get("areaMax"))) {
+      $(".price-slider").slider("values", [+Cookies.get("priceMin"), +Cookies.get("priceMax")]);
+      $(".area-slider").slider("values", [+Cookies.get("areaMin"), +Cookies.get("areaMax")]);
+    }
+
+  } catch (e) {
+    console.log(e);
+    console.log("price and area cookies not loaded");
+  }
+
+  $(".filter-button").trigger("click");
 }
