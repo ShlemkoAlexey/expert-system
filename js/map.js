@@ -102,8 +102,8 @@ function initMap() {
     zoom: 9
   });
   activeInfoWindow = new google.maps.InfoWindow;
-
-  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend'));
+//   HEAT MAP
+//   map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend'));
 }
 
 
@@ -154,15 +154,15 @@ function loadMarkers(adress){
       console.log("marker event!!!");
     });
     markers.push(marker);
-
+    //   HEAT MAP
     /*create data for heatmaps*/
-    if (data.results[i].com_time <=40) {
-      heatmap.dataFast.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
-    }else if (data.results[i].com_time <=70) {
-      heatmap.dataMed.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
-    }else{
-      heatmap.dataLong.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
-    }
+    // if (data.results[i].com_time <=40) {
+    //   heatmap.dataFast.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
+    // }else if (data.results[i].com_time <=70) {
+    //   heatmap.dataMed.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
+    // }else{
+    //   heatmap.dataLong.push(new google.maps.LatLng(data.results[i].lat, data.results[i].lng));
+    // }
     /*create data for heatmaps*/
   }
   console.log("markers loaded");
@@ -188,8 +188,8 @@ function loadMarkers(adress){
   map.addListener('click', function(){
     marker.info.close(map, this);
   });
-
-  generateHeatMaps();
+//  HEAT MAP
+//  generateHeatMaps();
 
 
 })
