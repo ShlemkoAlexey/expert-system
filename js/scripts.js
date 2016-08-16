@@ -190,12 +190,13 @@ function createAdvertFrame(url, image_url, location, actual_price, predicted_pri
   }else{
     has_garage = "<i class='mdi mdi-check' style = 'color:green;'></i>"
   }
-
+  price_diff = price_diff
   var price_comparison;
+
   if(price_diff >=0){
-    price_comparison = '<p data-toggle="tooltip" data-placement="bottom" title="Overrated"><i class="mdi mdi-arrow-up-bold"></i> <span style="color:red">'+price_diff+'€</span></p>';
+    price_comparison = '<p data-toggle="tooltip" data-placement="bottom" title="Overrated"><i class="mdi mdi-arrow-up-bold"></i> <span style="color:red">'+numeral(price_diff).format('0,0')+' €</span></p>';
   }else{
-    price_comparison = '<p data-toggle="tooltip" data-placement="bottom" title="Underrated"><i class="mdi mdi-arrow-down-bold"></i> <span style="color:green">'+(price_diff*(-1))+'€</span></p>';
+    price_comparison = '<p data-toggle="tooltip" data-placement="bottom" title="Underrated"><i class="mdi mdi-arrow-down-bold"></i> <span style="color:green">'+numeral((price_diff*(-1))).format('0,0')+' €</span></p>';
   }
 
   if (type == 1) {
@@ -203,7 +204,7 @@ function createAdvertFrame(url, image_url, location, actual_price, predicted_pri
   }else {
     type = "Apartment"
   }
-  return '<div class="result">  <div class="row">  <div class="col-xs-2">  <a href="'+url+'" target="_blank"><img src="'+image_url+'" alt="result-image" class="result-image"/></a>  </div>  <div class="col-xs-10">  <a class="result-city-name" href="'+url+'" target="_blank">'+capitalizeFirstLetter(location)+', ' + post_code + '</p></a>  <div class="row">  <div class="col-xs-8">  <div class="row">  <div class="col-xs-5 result-data">  <p>  Type: '+type+'  </p>  <p>  Rooms: '+rooms+' ('+bedrooms+' bedrooms)  </p>  <p>  Area: '+area+' m<sup>3</sup>  </p>  </div>  <div class="col-xs-7 result-options">  <p>  Garden:'+has_garden+'  </p>  <p>  Garage: '+has_garage+'  </p>  </div>  </div>  <p class="result-description">  '+cutDescription(description)+'  </p>  <a target="_blank" href="'+url+'" class="result-link">  Go to advert...  </a>  </div>  <div class="col-xs-4 result-prices">  <p>  actual:<span>'+actual_price+'€</span>  </p>  <p>  predicted:<span>'+predicted_price+'€</span>  </p>  '+price_comparison+'  </div>  </div>  </div>  </div>  </div>';
+  return '<div class="result">  <div class="row">  <div class="col-xs-2">  <a href="'+url+'" target="_blank"><img src="'+image_url+'" alt="result-image" class="result-image"/></a>  </div>  <div class="col-xs-10">  <a class="result-city-name" href="'+url+'" target="_blank">'+capitalizeFirstLetter(location)+', ' + post_code + '</p></a>  <div class="row">  <div class="col-xs-8">  <div class="row">  <div class="col-xs-5 result-data">  <p>  Type: '+type+'  </p>  <p>  Rooms: '+rooms+' ('+bedrooms+' bedrooms)  </p>  <p>  Area: '+area+' m<sup>3</sup>  </p>  </div>  <div class="col-xs-7 result-options">  <p>  Garden:'+has_garden+'  </p>  <p>  Garage: '+has_garage+'  </p>  </div>  </div>  <p class="result-description">  '+cutDescription(description)+'  </p>  <a target="_blank" href="'+url+'" class="result-link">  Go to advert...  </a>  </div>  <div class="col-xs-4 result-prices">  <p>  actual:<span>'+numeral(actual_price).format('0,0') +' €</span>  </p>  <p>  predicted:<span>'+ numeral(predicted_price).format('0,0')+' €</span>  </p>  '+price_comparison+'  </div>  </div>  </div>  </div>  </div>';
 }
 
 function loadCityList(){

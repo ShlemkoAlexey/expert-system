@@ -91,11 +91,21 @@ function loadCookiesForFilters(){
       $(".price-slider").slider("values", [+Cookies.get("priceMin"), +Cookies.get("priceMax")]);
       $(".area-slider").slider("values", [+Cookies.get("areaMin"), +Cookies.get("areaMax")]);
     }
-
   } catch (e) {
     console.log(e);
     console.log("price and area cookies not loaded");
   }
-
   $(".filter-button").trigger("click");
 }
+
+
+//FOR POP-UP
+
+if (Cookies.get("popup")) {
+  $("#cookie-popup").css("display", "none");
+}
+
+$("#cookie-popup button").click(function(){
+  $("#cookie-popup").fadeOut();
+  Cookies.set("popup", true, { expires: 30 });
+});

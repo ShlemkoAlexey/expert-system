@@ -451,3 +451,31 @@ input[name="inc-exc-radio"]{
   position: relative;
   top: 1px;
 }
+
+
+#cookie-popup{
+  background: #212121;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  color: white;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+  max-width: 30%;
+  border-radius: 5px;
+}
+
+#cookie-popup p{
+  font-size: 150%;
+}
+#cookie-popup button{
+  background-color: #f0d500;
+  color: black;
+  transition: .3s;
+}
+#cookie-popup button:hover{
+  background-color: white;
+  transition: .3s;
+}
