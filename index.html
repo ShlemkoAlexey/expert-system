@@ -10,7 +10,23 @@
   <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
   <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-  <script src="js/analytics.js"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+
+
+  ga('create', 'UA-33753611-3', 'auto');
+
+  ga('send', 'pageview');
+
+
+  </script>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
@@ -87,67 +103,67 @@
           </div>
         </div>
 
-         <!-- <div class="row">
-          <div class="col-xs-6" style="padding-right:0;">
-            <button class="btn btn-block map-switch-button map-switch-button-list" style="border-top-right-radius:0; border-bottom-right-radius:0;">LIST</button>
-          </div>
-          <div class="col-xs-6" style="padding-left:0;">
-            <button class="btn btn-block map-switch-button map-switch-button-map" style="border-top-left-radius:0; border-bottom-left-radius:0;">MAP</button>
-          </div>
-        </div> -->
-
-        <div class="sort-table">
-
-
-          <table>
-            <tr>
-              <td>
-                <i class="mdi mdi-sort-variant" style="cursor: default; color: inherit;"></i>Sort by:
-              </td>
-              <td>
-                <i class="mdi mdi-chevron-down sort-area-asc"></i>Area<i class="mdi mdi-chevron-up sort-area-desc"></i>
-              </td>
-              <td>
-                <i class="mdi mdi-chevron-down sort-diff-asc"></i>Price difference<i class="mdi mdi-chevron-up sort-diff-desc"></i>
-              </td>
-              <td>
-                <i class="mdi mdi-chevron-down sort-actual-asc"></i>Actual price<i class="mdi mdi-chevron-up sort-actual-desc"></i>
-              </td>
-              <td>
-                <i class="mdi mdi-chevron-down sort-predicted-asc"></i>Predicted price<i class="mdi mdi-chevron-up sort-predicted-desc"></i>
-              </td>
-            </tr>
-          </table>
-
-        </div>
-
+        <!-- <div class="row">
+        <div class="col-xs-6" style="padding-right:0;">
+        <button class="btn btn-block map-switch-button map-switch-button-list" style="border-top-right-radius:0; border-bottom-right-radius:0;">LIST</button>
       </div>
-      <div class="paginator">
-        <ul></ul>
-      </div>
+      <div class="col-xs-6" style="padding-left:0;">
+      <button class="btn btn-block map-switch-button map-switch-button-map" style="border-top-left-radius:0; border-bottom-left-radius:0;">MAP</button>
+    </div>
+  </div> -->
+
+  <div class="sort-table">
 
 
-      <div class="results-block">
-        <!--
-         <div class="result">
-        <div class="row">
-        <div class="col-xs-2">
-        <a href="http://www.funda.nl/" target="_blank"><img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" class="result-image"/></a>
-      </div>
-      <div class="col-xs-10">
-      <a class="result-city-name" href="http://www.funda.nl/" target="_blank">Amsterdam</p></a>
-      <div class="row">
-      <div class="col-xs-8">
-      <div class="row">
-      <div class="col-xs-5 result-data">
-      <p>
-      Type: House
-    </p>
-    <p>
-    Rooms: 4 (3)
-  </p>
-  <p>
-  Area: 120m<sup>3</sup>
+    <table>
+      <tr>
+        <td>
+          <i class="mdi mdi-sort-variant" style="cursor: default; color: inherit;"></i>Sort by:
+        </td>
+        <td>
+          <i class="mdi mdi-chevron-down sort-area-asc"></i>Area<i class="mdi mdi-chevron-up sort-area-desc"></i>
+        </td>
+        <td>
+          <i class="mdi mdi-chevron-down sort-diff-asc"></i>Price difference<i class="mdi mdi-chevron-up sort-diff-desc"></i>
+        </td>
+        <td>
+          <i class="mdi mdi-chevron-down sort-actual-asc"></i>Actual price<i class="mdi mdi-chevron-up sort-actual-desc"></i>
+        </td>
+        <td>
+          <i class="mdi mdi-chevron-down sort-predicted-asc"></i>Predicted price<i class="mdi mdi-chevron-up sort-predicted-desc"></i>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+<div class="paginator">
+  <ul></ul>
+</div>
+
+
+<div class="results-block">
+  <!--
+  <div class="result">
+  <div class="row">
+  <div class="col-xs-2">
+  <a href="http://www.funda.nl/" target="_blank"><img src="http://wooden-houses.kiev.ua/wp-content/uploads/2014/06/dom-profilirovannyi-brus.jpg" alt="result-image" class="result-image"/></a>
+</div>
+<div class="col-xs-10">
+<a class="result-city-name" href="http://www.funda.nl/" target="_blank">Amsterdam</p></a>
+<div class="row">
+<div class="col-xs-8">
+<div class="row">
+<div class="col-xs-5 result-data">
+<p>
+Type: House
+</p>
+<p>
+Rooms: 4 (3)
+</p>
+<p>
+Area: 120m<sup>3</sup>
 </p>
 </div>
 <div class="col-xs-7 result-options">
@@ -199,9 +215,9 @@ predicted:<span>150000€</span>
 </div>
 <!-- <div id="map"></div>
 <div id="map-preloader">
-  <div>
-  <img src="src/preloader.gif" alt="preloader">
-  </div>
+<div>
+<img src="src/preloader.gif" alt="preloader">
+</div>
 </div> -->
 <div class="footer-block">
   <p>
