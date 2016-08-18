@@ -454,6 +454,7 @@ input[name="inc-exc-radio"]{
 
 
 #cookie-popup{
+  display: none;
   background: #212121;
   position: fixed;
   right: 0;

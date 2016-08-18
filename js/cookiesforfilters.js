@@ -101,8 +101,8 @@ function loadCookiesForFilters(){
 
 //FOR POP-UP
 
-if (Cookies.get("popup")) {
-  $("#cookie-popup").css("display", "none");
+if (!Cookies.get("popup")) {
+  $("#cookie-popup").css("display", "block");
 }
 
 $("#cookie-popup button").click(function(){
