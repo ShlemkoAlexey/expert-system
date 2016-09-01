@@ -1,0 +1,17 @@
+.faq-block{
+  margin-top: 20px;
+  background: #ffffff;
+  width: 100%;
+  border-top: 4px solid #b88b58;
+  padding: 20px;
+
+}
+
+.faq-block p{
+  line-height: 2;
+  font-size: 150%;
+  margin: 0 0 50px 50px;
+}
+.faq-block p:last-of-type{
+  margin-bottom: 0;
+}

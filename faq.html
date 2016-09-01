@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FAQ</title>
+  <link rel="shortcut icon" href="src/icon.png" type="image/x-icon">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/faq.css">
+  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-33753611-3', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+
+</head>
+<body>
+  <div class="header-block">
+    <a href="index.html">Project Estate</a>
+  </div>
+  <div class="container">
+    <ul class="navigation-bar">
+      <li>
+        <a href="index.html">List</a>
+      </li>
+      <li>
+        <a href="map.html">Map</a>
+      </li>
+      <li>
+        <a href="#" class="active">F.A.Q.</a>
+      </li>
+    </ul>
+
+  </div>
+  <div class="container">
+
+
+    <div class="faq-block">
+
+      <h2>What is the project about?</h2>
+
+      <p>In ProjectEstate we are building a house price estimating system. Our idea is to exclude subjective criterias from estimating process and make estimates based on market data available. That makes our estimates 100% reproducible which means that two estimates for the same house should give you the same price value(as long as there is no market changes between estimates). But in the same time it means that we can't find a house that suits you particularly for 100%. So unfortunately you will still have to arrange viewings.</p>
+
+      <h2>What is predicted and actual prices?</h2>
+
+      <p>Actual price is the house asking price in advert. Predicted price is what we consider as a fair price for that house.</p>
+
+      <h2>How do you predict prices?</h2>
+
+      <p>We are predicting prices using machine learning algorithms on statistics data for available houses.</p>
+
+      <h2>What is your algorithm limitations?</h2>
+
+      <p>There are some factors that we can’t estimate yet like house condition, views etc. So our estimate should be treated like a basic one which is done based on major house parameters like living area, rooms count etc.</p>
+
+      <h2>This estimate cannot be correct! That house can’t be overpriced for 100k EUR</h2>
+
+      <p>Indeed our algorithms have some limitations which were described above. In the case when you see some obviously invalid estimate it usually mean that house price is affected by some factor that we can’t measure yet. Like house condition, some unique location etc.</p>
+
+
+    </div>
+  </div>
+
+
+
+  <div class="footer-block">
+    <p>
+      <b>Back-end: Illia B.</b>
+    </p>
+    <p>
+      <b>Front-end: Alexey S.</b>
+    </p>
+    <p>
+      <b>© 2016 All rights reserved</b>
+    </p>
+  </div>
+  <div id="cookie-popup">
+    <p>
+      This website uses cookies to ensure you get the best experience on our website
+    </p>
+    <button type="button" name="cookie-popup-button" class="btn btn-block">Got it!</button>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <script src="js/js.cookie.js"></script>
+  <script src="js/cookiesforfilters.js"></script>
+
+</body>
+</html>
