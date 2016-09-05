@@ -418,6 +418,8 @@ input[name="inc-exc-radio"]{
 .footer-block p:last-child{
   margin: 0;
 }
+
+
 .mdi-arrow-down-bold{
   color: green;
   font-size: 175% !important;
